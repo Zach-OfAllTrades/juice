@@ -25,4 +25,9 @@ describe('Radio', () => {
     expect(apple).not.toBeChecked();
     expect(banana).toBeChecked();
   });
+
+  it('applies labelPosition class modifier correctly', () => {
+    const { container } = render(<Radio name="opt" value="1" label="Top" labelPosition="top" />);
+    expect(container.firstChild).toHaveClass('juice-radio-wrapper--label-top');
+  });
 });

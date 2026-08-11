@@ -30,6 +30,23 @@
   outline: none;
 }
 
+/* Resize controls */
+.juice-textarea--resize-none {
+  resize: none;
+}
+
+.juice-textarea--resize-vertical {
+  resize: vertical;
+}
+
+.juice-textarea--resize-horizontal {
+  resize: horizontal;
+}
+
+.juice-textarea--resize-both {
+  resize: both;
+}
+
 .juice-textarea::placeholder {
   color: var(--juice-color-text-muted);
 }

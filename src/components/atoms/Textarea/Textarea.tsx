@@ -1,6 +1,8 @@
 import { type TextareaHTMLAttributes, useId } from 'react';
 import './Textarea.css';
 
+export type TextareaResize = 'none' | 'vertical' | 'horizontal' | 'both';
+
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   /** Visible label text */
   label?: string;
@@ -10,18 +12,28 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   error?: string;
   /** Mark field as required */
   required?: boolean;
+  /**
+   * Resizing behavior of the textarea:
+   * - 'none': disables expand/contract resizing entirely
+   * - 'vertical': allows vertical resizing (default)
+   * - 'horizontal': allows horizontal resizing
+   * - 'both': allows both axes
+   * - false: shorthand for 'none'
+   */
+  resize?: TextareaResize | boolean;
   /** Custom ID for external label connection */
   id?: string;
 }
 
 /**
- * Textarea — native `<textarea>` wrapper with wired `<label>` and ARIA error states.
+ * Textarea — native `<textarea>` wrapper with wired `<label>`, error states, and resize control.
  *
  * @example
  * ```tsx
  * <Textarea
  *   label="Feedback"
  *   placeholder="Tell us what you think…"
+ *   resize="none"
  *   rows={4}
  * />
  * ```
@@ -31,6 +43,7 @@ export function Textarea({
   helperText,
   error,
   required,
+  resize = 'vertical',
   id: propId,
   className = '',
   ...props
@@ -43,7 +56,15 @@ export function Textarea({
   const hasError = Boolean(error);
   const hasHelper = Boolean(helperText);
 
-  const textareaClasses = ['juice-textarea', hasError && 'juice-textarea--error', className]
+  const resizeMode: TextareaResize =
+    resize === false ? 'none' : resize === true ? 'vertical' : resize;
+
+  const textareaClasses = [
+    'juice-textarea',
+    `juice-textarea--resize-${resizeMode}`,
+    hasError && 'juice-textarea--error',
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 

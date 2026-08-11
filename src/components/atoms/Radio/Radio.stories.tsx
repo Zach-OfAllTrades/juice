@@ -7,6 +7,10 @@ const meta = {
   component: Radio,
   tags: ['autodocs'],
   argTypes: {
+    labelPosition: {
+      control: 'select',
+      options: ['right', 'left', 'top', 'bottom'],
+    },
     disabled: { control: 'boolean' },
   },
 } satisfies Meta<typeof Radio>;
@@ -19,8 +23,27 @@ export const Default: Story = {
     name: 'sample',
     value: 'option1',
     label: 'Standard option',
+    labelPosition: 'right',
     defaultChecked: true,
   },
+};
+
+export const LabelPositions: Story = {
+  args: {},
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: 360 }}>
+      <Radio
+        name="pos"
+        value="r"
+        label="Label Right (Default)"
+        labelPosition="right"
+        defaultChecked
+      />
+      <Radio name="pos" value="l" label="Label Left" labelPosition="left" />
+      <Radio name="pos" value="t" label="Label Top" labelPosition="top" />
+      <Radio name="pos" value="b" label="Label Bottom" labelPosition="bottom" />
+    </div>
+  ),
 };
 
 export const WithDescription: Story = {

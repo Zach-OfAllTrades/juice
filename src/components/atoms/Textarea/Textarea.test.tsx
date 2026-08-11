@@ -20,6 +20,12 @@ describe('Textarea', () => {
     expect(textarea).toHaveValue('First line\nSecond line');
   });
 
+  it('applies resize none modifier class', () => {
+    render(<Textarea label="Fixed" resize="none" />);
+    const textarea = screen.getByLabelText(/fixed/i);
+    expect(textarea).toHaveClass('juice-textarea--resize-none');
+  });
+
   it('renders error message and aria-invalid', () => {
     render(<Textarea label="Review" error="Review is required" />);
     const textarea = screen.getByLabelText(/review/i);

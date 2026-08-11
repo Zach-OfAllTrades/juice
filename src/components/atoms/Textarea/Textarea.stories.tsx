@@ -6,6 +6,10 @@ const meta = {
   component: Textarea,
   tags: ['autodocs'],
   argTypes: {
+    resize: {
+      control: 'select',
+      options: ['none', 'vertical', 'horizontal', 'both'],
+    },
     disabled: { control: 'boolean' },
     required: { control: 'boolean' },
     readOnly: { control: 'boolean' },
@@ -19,6 +23,16 @@ export const Default: Story = {
   args: {
     label: 'Comments',
     placeholder: 'Enter your comments here…',
+    rows: 4,
+    resize: 'vertical',
+  },
+};
+
+export const NoResize: Story = {
+  args: {
+    label: 'Fixed Size Input',
+    placeholder: 'This textarea cannot be resized by dragging the handle.',
+    resize: 'none',
     rows: 4,
   },
 };

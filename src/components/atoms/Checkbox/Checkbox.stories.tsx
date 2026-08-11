@@ -7,6 +7,10 @@ const meta = {
   component: Checkbox,
   tags: ['autodocs'],
   argTypes: {
+    labelPosition: {
+      control: 'select',
+      options: ['right', 'left', 'top', 'bottom'],
+    },
     disabled: { control: 'boolean' },
     indeterminate: { control: 'boolean' },
   },
@@ -18,8 +22,21 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: 'Subscribe to product newsletter',
+    labelPosition: 'right',
     defaultChecked: true,
   },
+};
+
+export const LabelPositions: Story = {
+  args: {},
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: 360 }}>
+      <Checkbox label="Label Right (Default)" labelPosition="right" defaultChecked />
+      <Checkbox label="Label Left" labelPosition="left" defaultChecked />
+      <Checkbox label="Label Top" labelPosition="top" defaultChecked />
+      <Checkbox label="Label Bottom" labelPosition="bottom" defaultChecked />
+    </div>
+  ),
 };
 
 export const WithDescription: Story = {
