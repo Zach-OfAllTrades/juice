@@ -1,0 +1,193 @@
+.juice-btn {
+  /* Reset */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--juice-space-2);
+
+  /* Typography */
+  font-family: var(--juice-font-sans);
+  font-weight: var(--juice-weight-medium);
+  line-height: var(--juice-leading-tight);
+  white-space: nowrap;
+  text-decoration: none;
+
+  /* Shape */
+  border-radius: var(--juice-radius-md);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  user-select: none;
+
+  /* Transition */
+  transition:
+    background-color var(--juice-duration-fast) var(--juice-easing-standard),
+    border-color var(--juice-duration-fast) var(--juice-easing-standard),
+    color var(--juice-duration-fast) var(--juice-easing-standard),
+    box-shadow var(--juice-duration-fast) var(--juice-easing-standard),
+    opacity var(--juice-duration-fast) var(--juice-easing-standard);
+
+  /* Prevent shrinking in flex parents */
+  flex-shrink: 0;
+}
+
+/* ── Focus ──────────────────────────────────────────────────── */
+.juice-btn:focus-visible {
+  outline: 2px solid var(--juice-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Disabled ───────────────────────────────────────────────── */
+.juice-btn:disabled,
+.juice-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Sizes ──────────────────────────────────────────────────── */
+.juice-btn--sm {
+  font-size: var(--juice-text-sm);
+  padding-block: var(--juice-space-1);
+  padding-inline: var(--juice-space-3);
+  min-height: 2rem;
+}
+
+.juice-btn--md {
+  font-size: var(--juice-text-sm);
+  padding-block: var(--juice-space-2);
+  padding-inline: var(--juice-space-4);
+  min-height: 2.5rem;
+}
+
+.juice-btn--lg {
+  font-size: var(--juice-text-base);
+  padding-block: var(--juice-space-3);
+  padding-inline: var(--juice-space-6);
+  min-height: 3rem;
+}
+
+/* Icon-only: square aspect ratio */
+.juice-btn--icon {
+  padding: var(--juice-space-2);
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
+
+.juice-btn--icon.juice-btn--sm {
+  padding: var(--juice-space-1);
+  min-width: 2rem;
+  min-height: 2rem;
+}
+
+.juice-btn--icon.juice-btn--lg {
+  padding: var(--juice-space-3);
+  min-width: 3rem;
+  min-height: 3rem;
+}
+
+/* ── Variants ───────────────────────────────────────────────── */
+
+/* Primary */
+.juice-btn--primary {
+  background-color: var(--juice-color-brand);
+  color: var(--juice-color-brand-contrast);
+  border-color: transparent;
+}
+.juice-btn--primary:hover:not(:disabled) {
+  background-color: var(--juice-color-brand-hover);
+}
+.juice-btn--primary:active:not(:disabled) {
+  background-color: var(--juice-color-brand-active);
+}
+
+/* Secondary */
+.juice-btn--secondary {
+  background-color: transparent;
+  color: var(--juice-color-brand);
+  border-color: var(--juice-color-brand);
+}
+.juice-btn--secondary:hover:not(:disabled) {
+  background-color: var(--juice-color-brand-subtle);
+}
+.juice-btn--secondary:active:not(:disabled) {
+  background-color: var(--juice-color-brand-subtle);
+  border-color: var(--juice-color-brand-hover);
+}
+
+/* Ghost */
+.juice-btn--ghost {
+  background-color: transparent;
+  color: var(--juice-color-text);
+  border-color: transparent;
+}
+.juice-btn--ghost:hover:not(:disabled) {
+  background-color: var(--juice-color-bg-muted);
+}
+.juice-btn--ghost:active:not(:disabled) {
+  background-color: var(--juice-color-bg-muted);
+}
+
+/* Danger */
+.juice-btn--danger {
+  background-color: var(--juice-color-danger);
+  color: var(--juice-color-danger-contrast);
+  border-color: transparent;
+}
+.juice-btn--danger:hover:not(:disabled) {
+  background-color: var(--juice-color-danger-hover);
+}
+
+/* Danger ghost */
+.juice-btn--danger-ghost {
+  background-color: transparent;
+  color: var(--juice-color-danger);
+  border-color: transparent;
+}
+.juice-btn--danger-ghost:hover:not(:disabled) {
+  background-color: var(--juice-color-danger-subtle);
+}
+
+/* ── Loading state ──────────────────────────────────────────── */
+.juice-btn--loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.juice-btn--loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--juice-radius-full);
+  animation: juice-spin 0.6s linear infinite;
+  color: var(--juice-color-brand-contrast);
+}
+
+.juice-btn--secondary.juice-btn--loading::after,
+.juice-btn--ghost.juice-btn--loading::after,
+.juice-btn--danger-ghost.juice-btn--loading::after {
+  color: var(--juice-color-brand);
+}
+
+@keyframes juice-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .juice-btn--loading::after {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+/* ── Full width ─────────────────────────────────────────────── */
+.juice-btn--full {
+  width: 100%;
+}

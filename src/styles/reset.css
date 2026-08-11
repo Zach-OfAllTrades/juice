@@ -1,0 +1,63 @@
+/**
+ * Juice CSS Reset (opt-in)
+ *
+ * Import this in your consuming app ONCE if you don't have your own reset:
+ *   import '@zach-ofallTrades/juice/reset'
+ *
+ * Scope: only normalizes elements used by Juice components.
+ * Does not touch global typography or third-party elements.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default button styling without losing semantics */
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+/* Remove default list styling */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Accessible focus — only show ring on keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--juice-color-focus-ring, hsl(230 85% 60% / 0.5));
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* SVG icons should not be interactive */
+svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Responsive media */
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* Respect user font size preference */
+html {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}

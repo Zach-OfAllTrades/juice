@@ -1,0 +1,62 @@
+.juice-textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-1);
+  width: 100%;
+}
+
+.juice-textarea {
+  display: block;
+  width: 100%;
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-base);
+  color: var(--juice-color-text);
+  background-color: var(--juice-color-surface);
+  line-height: var(--juice-leading-normal);
+
+  padding-block: var(--juice-space-2);
+  padding-inline: var(--juice-space-3);
+
+  border: 1.5px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-md);
+  min-height: 5rem;
+  resize: vertical;
+
+  transition: border-color var(--juice-duration-fast) var(--juice-easing-standard), box-shadow
+    var(--juice-duration-fast) var(--juice-easing-standard);
+
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.juice-textarea::placeholder {
+  color: var(--juice-color-text-muted);
+}
+
+.juice-textarea:focus-visible {
+  border-color: var(--juice-color-brand);
+  box-shadow: 0 0 0 3px var(--juice-color-focus-ring);
+}
+
+.juice-textarea:hover:not(:disabled):not(:focus-visible) {
+  border-color: var(--juice-color-border-strong);
+}
+
+.juice-textarea--error {
+  border-color: var(--juice-color-danger);
+}
+.juice-textarea--error:focus-visible {
+  box-shadow: 0 0 0 3px var(--juice-color-danger-subtle);
+}
+
+.juice-textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--juice-color-bg-subtle);
+}
+
+.juice-textarea:read-only {
+  background-color: var(--juice-color-bg-subtle);
+  cursor: default;
+}

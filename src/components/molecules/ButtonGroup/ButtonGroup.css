@@ -1,0 +1,44 @@
+.juice-button-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Spaced variant ─────────────────────────────────────────── */
+.juice-button-group--spaced {
+  gap: var(--juice-space-2);
+}
+
+/* ── Stacked variant ────────────────────────────────────────── */
+.juice-button-group--stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--juice-space-2);
+  width: 100%;
+}
+
+/* ── Segmented variant (connected buttons) ──────────────────── */
+.juice-button-group--segmented {
+  gap: 0;
+}
+
+.juice-button-group--segmented > .juice-btn {
+  border-radius: 0;
+  border-right-width: 0.75px;
+  border-left-width: 0.75px;
+}
+
+.juice-button-group--segmented > .juice-btn:first-child {
+  border-top-left-radius: var(--juice-radius-md);
+  border-bottom-left-radius: var(--juice-radius-md);
+  border-left-width: 1.5px;
+}
+
+.juice-button-group--segmented > .juice-btn:last-child {
+  border-top-right-radius: var(--juice-radius-md);
+  border-bottom-right-radius: var(--juice-radius-md);
+  border-right-width: 1.5px;
+}
+
+.juice-button-group--segmented > .juice-btn:focus-visible {
+  z-index: 1;
+}

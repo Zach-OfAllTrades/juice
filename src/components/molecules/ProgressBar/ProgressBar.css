@@ -1,0 +1,84 @@
+.juice-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-1);
+  width: 100%;
+  font-family: var(--juice-font-sans);
+}
+
+.juice-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text);
+  font-weight: var(--juice-weight-medium);
+}
+
+.juice-progress-value-text {
+  font-size: var(--juice-text-xs);
+  color: var(--juice-color-text-subtle);
+  font-family: var(--juice-font-mono);
+}
+
+/* Native progress bar reset & styling */
+.juice-progress-track {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: var(--juice-radius-full);
+  overflow: hidden;
+  background-color: var(--juice-color-bg-muted);
+  position: relative;
+}
+
+.juice-progress-bar {
+  height: 100%;
+  border-radius: var(--juice-radius-full);
+  background-color: var(--juice-color-brand);
+  transition: width var(--juice-duration-base) var(--juice-easing-standard);
+}
+
+/* Variants */
+.juice-progress-bar--success {
+  background-color: var(--juice-color-success);
+}
+.juice-progress-bar--warning {
+  background-color: var(--juice-color-warning);
+}
+.juice-progress-bar--danger {
+  background-color: var(--juice-color-danger);
+}
+
+/* Indeterminate loader */
+@keyframes juice-indeterminate-slide {
+  0% {
+    left: -40%;
+    width: 40%;
+  }
+  50% {
+    left: 20%;
+    width: 60%;
+  }
+  100% {
+    left: 100%;
+    width: 40%;
+  }
+}
+
+.juice-progress-bar--indeterminate {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  animation: juice-indeterminate-slide 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .juice-progress-bar {
+    transition: none;
+  }
+  .juice-progress-bar--indeterminate {
+    animation: none;
+    left: 0;
+    width: 50%;
+  }
+}

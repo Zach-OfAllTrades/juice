@@ -1,0 +1,9 @@
+/* InputStack builds on Input's internal classes — no additional styles needed.
+   This file exists as a hook for future molecule-level overrides. */
+
+.juice-input-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-4);
+  width: 100%;
+}

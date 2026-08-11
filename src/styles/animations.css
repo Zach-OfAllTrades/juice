@@ -1,0 +1,96 @@
+/**
+ * Juice Animation Utilities
+ *
+ * Shared entry/exit animation patterns using @starting-style.
+ * Consumed by individual component CSS files via class composition.
+ */
+
+/* ── Fade ─────────────────────────────────────────────────────── */
+.juice-fade {
+  opacity: 1;
+  transition: opacity var(--juice-duration-base) var(--juice-easing-standard), display
+    var(--juice-duration-base) var(--juice-easing-standard);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.juice-fade[hidden] {
+  display: none;
+  opacity: 0;
+}
+
+/* ── Scale-in (for dropdowns/popovers) ──────────────────────── */
+.juice-scale-in {
+  opacity: 1;
+  scale: 1;
+  transform-origin: var(--juice-transform-origin, top center);
+  transition: opacity var(--juice-duration-base) var(--juice-easing-decelerate), scale
+    var(--juice-duration-base) var(--juice-easing-decelerate), display var(--juice-duration-base)
+    var(--juice-easing-decelerate);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    scale: 0.95;
+  }
+}
+
+/* ── Slide up (for bottom drawers) ─────────────────────────── */
+.juice-slide-up {
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity var(--juice-duration-slow) var(--juice-easing-decelerate), translate
+    var(--juice-duration-slow) var(--juice-easing-decelerate), display var(--juice-duration-slow)
+    var(--juice-easing-decelerate);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    translate: 0 100%;
+  }
+}
+
+/* ── Overlay backdrop ───────────────────────────────────────── */
+.juice-overlay {
+  opacity: 1;
+  transition: opacity var(--juice-duration-base) var(--juice-easing-standard), overlay
+    var(--juice-duration-base) var(--juice-easing-standard), display var(--juice-duration-base)
+    var(--juice-easing-standard);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+/* ── Skeleton shimmer ───────────────────────────────────────── */
+@keyframes juice-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.juice-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--juice-color-bg-muted) 25%,
+    var(--juice-color-bg-subtle) 50%,
+    var(--juice-color-bg-muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: juice-shimmer 1.4s ease-in-out infinite;
+}
+
+/* Respect reduced motion — no shimmer animation */
+@media (prefers-reduced-motion: reduce) {
+  .juice-shimmer {
+    animation: none;
+    background: var(--juice-color-bg-muted);
+  }
+}

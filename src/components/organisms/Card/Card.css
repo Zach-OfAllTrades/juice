@@ -1,0 +1,92 @@
+.juice-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--juice-color-surface);
+  color: var(--juice-color-text);
+  border-radius: var(--juice-radius-xl);
+  overflow: hidden;
+  font-family: var(--juice-font-sans);
+  transition: box-shadow var(--juice-duration-fast) var(--juice-easing-standard), border-color
+    var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+/* ── Variants ────────────────────────────────────────────────── */
+.juice-card--outline {
+  border: 1px solid var(--juice-color-border);
+}
+
+.juice-card--raised {
+  border: 1px solid var(--juice-color-border);
+  box-shadow: var(--juice-shadow-md);
+  background-color: var(--juice-color-surface-raised);
+}
+
+.juice-card--flat {
+  border: 1px solid transparent;
+  background-color: var(--juice-color-bg-subtle);
+}
+
+/* Hoverable interactive card */
+.juice-card--interactive {
+  cursor: pointer;
+}
+.juice-card--interactive:hover {
+  border-color: var(--juice-color-border-strong);
+  box-shadow: var(--juice-shadow-lg);
+}
+
+/* ── Card Slots ──────────────────────────────────────────────── */
+.juice-card-header {
+  padding: var(--juice-space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-1);
+}
+
+.juice-card-title {
+  font-size: var(--juice-text-lg);
+  font-weight: var(--juice-weight-semibold);
+  color: var(--juice-color-text);
+  line-height: var(--juice-leading-tight);
+}
+
+.juice-card-description {
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text-subtle);
+  line-height: var(--juice-leading-normal);
+}
+
+.juice-card-media {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--juice-color-bg-muted);
+}
+.juice-card-media > img,
+.juice-card-media > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.juice-card-body {
+  padding: var(--juice-space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-3);
+  font-size: var(--juice-text-sm);
+  line-height: var(--juice-leading-normal);
+}
+
+.juice-card-header + .juice-card-body {
+  padding-top: 0;
+}
+
+.juice-card-footer {
+  padding: var(--juice-space-5);
+  padding-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--juice-space-3);
+}

@@ -1,0 +1,196 @@
+/* ── Select Wrapper / Label ─────────────────────────────────── */
+.juice-select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-1);
+  width: 100%;
+}
+
+/* ── Select Trigger Button ──────────────────────────────────── */
+.juice-select-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--juice-space-2);
+  width: 100%;
+
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-base);
+  color: var(--juice-color-text);
+  background-color: var(--juice-color-surface);
+
+  padding-block: var(--juice-space-2);
+  padding-inline: var(--juice-space-3);
+
+  border: 1.5px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-md);
+  cursor: pointer;
+  user-select: none;
+
+  transition: border-color var(--juice-duration-fast) var(--juice-easing-standard), box-shadow
+    var(--juice-duration-fast) var(--juice-easing-standard), background-color
+    var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+.juice-select-trigger:hover:not(:disabled) {
+  border-color: var(--juice-color-border-strong);
+}
+
+.juice-select-trigger:focus-visible {
+  outline: none;
+  border-color: var(--juice-color-brand);
+  box-shadow: 0 0 0 3px var(--juice-color-focus-ring);
+}
+
+.juice-select-trigger[data-placeholder] {
+  color: var(--juice-color-text-muted);
+}
+
+.juice-select-trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--juice-color-bg-subtle);
+}
+
+.juice-select-trigger--error {
+  border-color: var(--juice-color-danger);
+}
+.juice-select-trigger--error:focus-visible {
+  box-shadow: 0 0 0 3px var(--juice-color-danger-subtle);
+}
+
+/* Sizes */
+.juice-select-trigger--sm {
+  font-size: var(--juice-text-sm);
+  padding-block: var(--juice-space-1);
+  padding-inline: var(--juice-space-2);
+  min-height: 2rem;
+}
+
+.juice-select-trigger--md {
+  font-size: var(--juice-text-base);
+  padding-block: var(--juice-space-2);
+  padding-inline: var(--juice-space-3);
+  min-height: 2.5rem;
+}
+
+.juice-select-trigger--lg {
+  font-size: var(--juice-text-lg);
+  padding-block: var(--juice-space-3);
+  padding-inline: var(--juice-space-4);
+  min-height: 3rem;
+}
+
+.juice-select-icon {
+  color: var(--juice-color-text-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+.juice-select-trigger[data-state="open"] .juice-select-icon {
+  transform: rotate(180deg);
+}
+
+/* ── Select Dropdown Content ────────────────────────────────── */
+.juice-select-content {
+  overflow: hidden;
+  background-color: var(--juice-color-surface-raised);
+  color: var(--juice-color-text);
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-lg);
+  box-shadow: var(--juice-shadow-lg);
+  z-index: var(--juice-z-dropdown);
+  min-width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height, 18rem);
+
+  /* Animation */
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: var(--radix-select-content-transform-origin);
+  transition: opacity var(--juice-duration-fast) var(--juice-easing-decelerate), transform
+    var(--juice-duration-fast) var(--juice-easing-decelerate), display var(--juice-duration-fast)
+    var(--juice-easing-decelerate);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.juice-select-content[data-state="closed"] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.juice-select-viewport {
+  padding: var(--juice-space-1);
+}
+
+/* ── Select Items ───────────────────────────────────────────── */
+.juice-select-item {
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text);
+  border-radius: var(--juice-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--juice-space-2);
+  padding-inline: var(--juice-space-3);
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+.juice-select-item[data-highlighted] {
+  background-color: var(--juice-color-brand-subtle);
+  color: var(--juice-color-brand);
+}
+
+.juice-select-item[data-disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.juice-select-item-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--juice-color-brand);
+  margin-left: var(--juice-space-2);
+}
+
+/* ── Select Group Label / Separator ─────────────────────────── */
+.juice-select-label {
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-xs);
+  font-weight: var(--juice-weight-semibold);
+  color: var(--juice-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-block: var(--juice-space-1);
+  padding-inline: var(--juice-space-3);
+}
+
+.juice-select-separator {
+  height: 1px;
+  background-color: var(--juice-color-border);
+  margin-block: var(--juice-space-1);
+}
+
+/* ── Scroll Buttons ─────────────────────────────────────────── */
+.juice-select-scroll-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  background-color: var(--juice-color-surface-raised);
+  color: var(--juice-color-text-subtle);
+  cursor: default;
+}

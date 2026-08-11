@@ -1,0 +1,159 @@
+/**
+ * Juice Design Token Contract
+ *
+ * These CSS custom properties form the public theming API.
+ * Consuming applications override these on :root to theme the library.
+ * All component styles reference ONLY these tokens — never raw values.
+ *
+ * The default theme is Light Mode.
+ * Dark Mode is activated by adding [data-juice-theme="dark"] to <html> or any parent.
+ *
+ * Usage in consuming app:
+ *   :root { --juice-color-brand: hsl(260 85% 55%); }
+ */
+
+:root,
+[data-juice-theme="light"] {
+  /* ── Color: Brand ───────────────────────────────────────────── */
+  --juice-color-brand: hsl(230 85% 60%);
+  --juice-color-brand-hover: hsl(230 85% 52%);
+  --juice-color-brand-active: hsl(230 85% 44%);
+  --juice-color-brand-subtle: hsl(230 85% 60% / 0.12);
+  --juice-color-brand-contrast: hsl(0 0% 100%);
+
+  /* ── Color: Neutrals (Light Mode) ───────────────────────────── */
+  --juice-color-bg: hsl(0 0% 100%);
+  --juice-color-bg-subtle: hsl(220 14% 96%);
+  --juice-color-bg-muted: hsl(220 14% 91%);
+  --juice-color-surface: hsl(0 0% 100%);
+  --juice-color-surface-raised: hsl(0 0% 100%);
+  --juice-color-overlay: hsl(0 0% 0% / 0.48);
+
+  --juice-color-border: hsl(220 13% 86%);
+  --juice-color-border-strong: hsl(220 13% 72%);
+
+  --juice-color-text: hsl(222 47% 11%);
+  --juice-color-text-subtle: hsl(220 9% 46%);
+  --juice-color-text-muted: hsl(220 9% 63%);
+  --juice-color-text-inverse: hsl(0 0% 100%);
+  --juice-color-text-on-brand: hsl(0 0% 100%);
+
+  /* ── Color: Semantic ────────────────────────────────────────── */
+  --juice-color-success: hsl(142 71% 40%);
+  --juice-color-success-subtle: hsl(142 71% 40% / 0.1);
+  --juice-color-success-contrast: hsl(0 0% 100%);
+
+  --juice-color-warning: hsl(38 92% 46%);
+  --juice-color-warning-subtle: hsl(38 92% 46% / 0.1);
+  --juice-color-warning-contrast: hsl(0 0% 100%);
+
+  --juice-color-danger: hsl(0 72% 51%);
+  --juice-color-danger-hover: hsl(0 72% 44%);
+  --juice-color-danger-subtle: hsl(0 72% 51% / 0.1);
+  --juice-color-danger-contrast: hsl(0 0% 100%);
+
+  --juice-color-info: hsl(200 88% 44%);
+  --juice-color-info-subtle: hsl(200 88% 44% / 0.1);
+  --juice-color-info-contrast: hsl(0 0% 100%);
+
+  /* ── Color: Focus ring ──────────────────────────────────────── */
+  --juice-color-focus-ring: hsl(230 85% 60% / 0.5);
+
+  /* ── Spacing scale ──────────────────────────────────────────── */
+  --juice-space-1: 0.25rem; /* 4px  */
+  --juice-space-2: 0.5rem; /* 8px  */
+  --juice-space-3: 0.75rem; /* 12px */
+  --juice-space-4: 1rem; /* 16px */
+  --juice-space-5: 1.25rem; /* 20px */
+  --juice-space-6: 1.5rem; /* 24px */
+  --juice-space-8: 2rem; /* 32px */
+  --juice-space-10: 2.5rem; /* 40px */
+  --juice-space-12: 3rem; /* 48px */
+  --juice-space-16: 4rem; /* 64px */
+
+  /* ── Border radius ──────────────────────────────────────────── */
+  --juice-radius-sm: 0.25rem; /* 4px  */
+  --juice-radius-md: 0.5rem; /* 8px  */
+  --juice-radius-lg: 0.75rem; /* 12px */
+  --juice-radius-xl: 1rem; /* 16px */
+  --juice-radius-2xl: 1.5rem; /* 24px */
+  --juice-radius-full: 9999px;
+
+  /* ── Typography ─────────────────────────────────────────────── */
+  --juice-font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  --juice-font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+
+  --juice-text-xs: 0.75rem; /* 12px */
+  --juice-text-sm: 0.875rem; /* 14px */
+  --juice-text-base: 1rem; /* 16px */
+  --juice-text-lg: 1.125rem; /* 18px */
+  --juice-text-xl: 1.25rem; /* 20px */
+  --juice-text-2xl: 1.5rem; /* 24px */
+
+  --juice-leading-tight: 1.25;
+  --juice-leading-normal: 1.5;
+  --juice-leading-relaxed: 1.625;
+
+  --juice-weight-regular: 400;
+  --juice-weight-medium: 500;
+  --juice-weight-semibold: 600;
+  --juice-weight-bold: 700;
+
+  /* ── Shadows ────────────────────────────────────────────────── */
+  --juice-shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+  --juice-shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
+  --juice-shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+  --juice-shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
+
+  /* ── Motion ─────────────────────────────────────────────────── */
+  --juice-duration-fast: 100ms;
+  --juice-duration-base: 200ms;
+  --juice-duration-slow: 350ms;
+  --juice-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --juice-easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --juice-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+
+  /* ── Z-index ─────────────────────────────────────────────────── */
+  --juice-z-dropdown: 1000;
+  --juice-z-sticky: 1100;
+  --juice-z-overlay: 1200;
+  --juice-z-modal: 1300;
+  --juice-z-toast: 1400;
+
+  /* ── Controls default to light ─────────────────────────────── */
+  color-scheme: light;
+}
+
+/* ── Dark mode (Explicit opt-in via [data-juice-theme="dark"]) ─ */
+[data-juice-theme="dark"] {
+  --juice-color-bg: hsl(222 47% 7%);
+  --juice-color-bg-subtle: hsl(222 47% 11%);
+  --juice-color-bg-muted: hsl(222 32% 17%);
+  --juice-color-surface: hsl(222 47% 10%);
+  --juice-color-surface-raised: hsl(222 32% 14%);
+  --juice-color-overlay: hsl(0 0% 0% / 0.64);
+
+  --juice-color-border: hsl(220 13% 26%);
+  --juice-color-border-strong: hsl(220 13% 40%);
+
+  --juice-color-text: hsl(220 14% 95%);
+  --juice-color-text-subtle: hsl(220 9% 64%);
+  --juice-color-text-muted: hsl(220 9% 46%);
+
+  --juice-shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
+  --juice-shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
+  --juice-shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -4px hsl(0 0% 0% / 0.3);
+  --juice-shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.3), 0 8px 10px -6px hsl(0 0% 0% / 0.3);
+
+  color-scheme: dark;
+}
+
+/* ── Reduced motion: zero all motion tokens ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --juice-duration-fast: 0ms;
+    --juice-duration-base: 0ms;
+    --juice-duration-slow: 0ms;
+  }
+}

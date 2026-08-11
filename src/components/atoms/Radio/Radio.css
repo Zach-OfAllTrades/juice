@@ -1,0 +1,113 @@
+.juice-radio-wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--juice-space-2);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--juice-font-sans);
+}
+
+.juice-radio-wrapper--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.juice-radio-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.juice-radio-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.juice-radio-input:disabled {
+  cursor: not-allowed;
+}
+
+/* Custom styled circular box */
+.juice-radio-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--juice-radius-full);
+  border: 1.5px solid var(--juice-color-border-strong);
+  background-color: var(--juice-color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--juice-duration-fast) var(--juice-easing-standard), border-color
+    var(--juice-duration-fast) var(--juice-easing-standard), box-shadow var(--juice-duration-fast)
+    var(--juice-easing-standard);
+}
+
+.juice-radio-input:checked ~ .juice-radio-circle {
+  border-color: var(--juice-color-brand);
+}
+
+.juice-radio-input:focus-visible ~ .juice-radio-circle {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--juice-color-focus-ring);
+  border-color: var(--juice-color-brand);
+}
+
+/* Inner dot */
+.juice-radio-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--juice-radius-full);
+  background-color: var(--juice-color-brand);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity var(--juice-duration-fast) var(--juice-easing-standard), transform
+    var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+.juice-radio-input:checked ~ .juice-radio-circle .juice-radio-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Label & description */
+.juice-radio-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.juice-radio-label {
+  font-size: var(--juice-text-sm);
+  font-weight: var(--juice-weight-medium);
+  color: var(--juice-color-text);
+  line-height: var(--juice-leading-normal);
+}
+
+.juice-radio-description {
+  font-size: var(--juice-text-xs);
+  color: var(--juice-color-text-subtle);
+  line-height: var(--juice-leading-normal);
+}
+
+/* Radio Group Container */
+.juice-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-3);
+}
+
+.juice-radio-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--juice-space-4);
+}

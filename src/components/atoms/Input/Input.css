@@ -1,0 +1,112 @@
+.juice-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-1);
+  width: 100%;
+}
+
+/* ── Label ─────────────────────────────────────────────────── */
+.juice-label {
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-sm);
+  font-weight: var(--juice-weight-medium);
+  color: var(--juice-color-text);
+  line-height: var(--juice-leading-tight);
+  cursor: pointer;
+}
+
+.juice-label__required {
+  color: var(--juice-color-danger);
+  margin-inline-start: 0.2em;
+}
+
+/* ── Input field ───────────────────────────────────────────── */
+.juice-input {
+  display: block;
+  width: 100%;
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-base);
+  color: var(--juice-color-text);
+  background-color: var(--juice-color-surface);
+
+  padding-block: var(--juice-space-2);
+  padding-inline: var(--juice-space-3);
+
+  border: 1.5px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-md);
+
+  transition: border-color var(--juice-duration-fast) var(--juice-easing-standard), box-shadow
+    var(--juice-duration-fast) var(--juice-easing-standard);
+
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+/* Placeholder */
+.juice-input::placeholder {
+  color: var(--juice-color-text-muted);
+}
+
+/* Focus */
+.juice-input:focus-visible {
+  border-color: var(--juice-color-brand);
+  box-shadow: 0 0 0 3px var(--juice-color-focus-ring);
+}
+
+/* Hover */
+.juice-input:hover:not(:disabled):not(:focus-visible) {
+  border-color: var(--juice-color-border-strong);
+}
+
+/* Error */
+.juice-input--error {
+  border-color: var(--juice-color-danger);
+}
+.juice-input--error:focus-visible {
+  box-shadow: 0 0 0 3px var(--juice-color-danger-subtle);
+}
+
+/* Disabled */
+.juice-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--juice-color-bg-subtle);
+}
+
+/* Readonly */
+.juice-input:read-only {
+  background-color: var(--juice-color-bg-subtle);
+  cursor: default;
+}
+
+/* Sizes */
+.juice-input--sm {
+  font-size: var(--juice-text-sm);
+  padding-block: var(--juice-space-1);
+  padding-inline: var(--juice-space-2);
+}
+
+.juice-input--lg {
+  font-size: var(--juice-text-lg);
+  padding-block: var(--juice-space-3);
+  padding-inline: var(--juice-space-4);
+}
+
+/* ── Helper / Error text ────────────────────────────────────── */
+.juice-helper-text {
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-sm);
+  line-height: var(--juice-leading-normal);
+  color: var(--juice-color-text-subtle);
+}
+
+.juice-error-text {
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-sm);
+  line-height: var(--juice-leading-normal);
+  color: var(--juice-color-danger);
+  display: flex;
+  align-items: center;
+  gap: var(--juice-space-1);
+}

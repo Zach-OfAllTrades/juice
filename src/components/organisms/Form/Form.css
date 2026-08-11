@@ -1,0 +1,29 @@
+.juice-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-5);
+  width: 100%;
+  font-family: var(--juice-font-sans);
+}
+
+.juice-form-error-summary {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--juice-space-3);
+  padding: var(--juice-space-3) var(--juice-space-4);
+  border-radius: var(--juice-radius-md);
+  background-color: var(--juice-color-danger-subtle);
+  border: 1px solid var(--juice-color-danger);
+  color: var(--juice-color-danger);
+  font-size: var(--juice-text-sm);
+  line-height: var(--juice-leading-normal);
+}
+
+.juice-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--juice-space-3);
+  margin-top: var(--juice-space-2);
+  flex-wrap: wrap;
+}

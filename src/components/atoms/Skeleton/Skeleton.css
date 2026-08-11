@@ -1,0 +1,49 @@
+.juice-skeleton {
+  display: block;
+  /* Default height so a bare <Skeleton /> is visible without an explicit height prop */
+  min-height: 1rem;
+  border-radius: var(--juice-radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--juice-color-bg-muted) 25%,
+    var(--juice-color-bg-subtle) 50%,
+    var(--juice-color-bg-muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: juice-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes juice-skeleton-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .juice-skeleton {
+    animation: none;
+    background: var(--juice-color-bg-muted);
+  }
+}
+
+/* Circle variant (for avatars) */
+.juice-skeleton--circle {
+  border-radius: var(--juice-radius-full);
+}
+
+/* Text line variant */
+.juice-skeleton--text {
+  border-radius: var(--juice-radius-sm);
+  height: 1em;
+}
+
+/* Wrapper for stacked skeletons */
+.juice-skeleton-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-2);
+  width: 100%;
+}

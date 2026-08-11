@@ -1,0 +1,89 @@
+.juice-dropdown-content {
+  min-width: 12rem;
+  background-color: var(--juice-color-surface-raised);
+  color: var(--juice-color-text);
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-lg);
+  box-shadow: var(--juice-shadow-lg);
+  padding: var(--juice-space-1);
+  z-index: var(--juice-z-dropdown);
+  font-family: var(--juice-font-sans);
+  outline: none;
+
+  /* Animation */
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
+  transition: opacity var(--juice-duration-fast) var(--juice-easing-decelerate), transform
+    var(--juice-duration-fast) var(--juice-easing-decelerate), display var(--juice-duration-fast)
+    var(--juice-easing-decelerate);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.juice-dropdown-content[data-state="closed"] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.juice-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--juice-space-2);
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text);
+  padding-block: var(--juice-space-2);
+  padding-inline: var(--juice-space-3);
+  border-radius: var(--juice-radius-sm);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: background-color var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+.juice-dropdown-item[data-highlighted] {
+  background-color: var(--juice-color-brand-subtle);
+  color: var(--juice-color-brand);
+}
+
+.juice-dropdown-item--danger {
+  color: var(--juice-color-danger);
+}
+.juice-dropdown-item--danger[data-highlighted] {
+  background-color: var(--juice-color-danger-subtle);
+  color: var(--juice-color-danger);
+}
+
+.juice-dropdown-item[data-disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.juice-dropdown-separator {
+  height: 1px;
+  background-color: var(--juice-color-border);
+  margin-block: var(--juice-space-1);
+}
+
+.juice-dropdown-label {
+  font-size: var(--juice-text-xs);
+  font-weight: var(--juice-weight-semibold);
+  color: var(--juice-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-block: var(--juice-space-1);
+  padding-inline: var(--juice-space-3);
+}
+
+.juice-dropdown-shortcut {
+  font-size: var(--juice-text-xs);
+  font-family: var(--juice-font-mono);
+  color: var(--juice-color-text-muted);
+  margin-left: auto;
+}

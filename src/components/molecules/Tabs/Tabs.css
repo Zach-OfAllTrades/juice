@@ -1,0 +1,90 @@
+.juice-tabs-root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--juice-font-sans);
+}
+
+/* ── Tab List ───────────────────────────────────────────────── */
+.juice-tabs-list {
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 1px solid var(--juice-color-border);
+  gap: var(--juice-space-1);
+}
+
+.juice-tabs-list--pill {
+  border-bottom: none;
+  background-color: var(--juice-color-bg-subtle);
+  padding: var(--juice-space-1);
+  border-radius: var(--juice-radius-lg);
+  display: inline-flex;
+  width: fit-content;
+}
+
+/* ── Tab Trigger ────────────────────────────────────────────── */
+.juice-tabs-trigger {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-sm);
+  font-weight: var(--juice-weight-medium);
+  color: var(--juice-color-text-subtle);
+  padding-block: var(--juice-space-2);
+  padding-inline: var(--juice-space-3);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: color var(--juice-duration-fast) var(--juice-easing-standard), background-color
+    var(--juice-duration-fast) var(--juice-easing-standard);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.juice-tabs-trigger:hover:not(:disabled) {
+  color: var(--juice-color-text);
+}
+
+.juice-tabs-trigger:focus-visible {
+  outline: 2px solid var(--juice-color-focus-ring);
+  outline-offset: 2px;
+}
+
+.juice-tabs-trigger[data-state="active"] {
+  color: var(--juice-color-brand);
+  border-bottom-color: var(--juice-color-brand);
+}
+
+/* Pill variant trigger */
+.juice-tabs-list--pill .juice-tabs-trigger {
+  border-bottom: none;
+  margin-bottom: 0;
+  border-radius: var(--juice-radius-md);
+}
+
+.juice-tabs-list--pill .juice-tabs-trigger[data-state="active"] {
+  background-color: var(--juice-color-surface);
+  color: var(--juice-color-text);
+  box-shadow: var(--juice-shadow-sm);
+}
+
+.juice-tabs-trigger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Tab Content ────────────────────────────────────────────── */
+.juice-tabs-content {
+  padding-block: var(--juice-space-4);
+  color: var(--juice-color-text);
+  font-size: var(--juice-text-sm);
+  line-height: var(--juice-leading-normal);
+  outline: none;
+}
+
+.juice-tabs-content:focus-visible {
+  outline: 2px solid var(--juice-color-focus-ring);
+  outline-offset: 2px;
+}

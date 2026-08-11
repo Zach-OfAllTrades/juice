@@ -1,0 +1,165 @@
+/* ── Modal Overlay Backdrop ─────────────────────────────────── */
+.juice-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--juice-color-overlay);
+  z-index: var(--juice-z-overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  /* Animation */
+  opacity: 1;
+  transition: opacity var(--juice-duration-base) var(--juice-easing-standard), display
+    var(--juice-duration-base) var(--juice-easing-standard);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.juice-modal-overlay[data-state="closed"] {
+  opacity: 0;
+}
+
+/* ── Modal Content Container ────────────────────────────────── */
+.juice-modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: calc(100vw - var(--juice-space-8));
+  max-width: 32rem; /* 512px */
+  max-height: calc(100vh - var(--juice-space-8));
+  overflow-y: auto;
+  z-index: var(--juice-z-modal);
+
+  background-color: var(--juice-color-surface-raised);
+  color: var(--juice-color-text);
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-xl);
+  box-shadow: var(--juice-shadow-xl);
+  padding: var(--juice-space-6);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-4);
+
+  /* Animation */
+  opacity: 1;
+  transition: opacity var(--juice-duration-base) var(--juice-easing-decelerate), transform
+    var(--juice-duration-base) var(--juice-easing-decelerate), display var(--juice-duration-base)
+    var(--juice-easing-decelerate);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+}
+
+.juice-modal-content[data-state="closed"] {
+  opacity: 0;
+  transform: translate(-50%, -48%) scale(0.96);
+}
+
+.juice-modal-content:focus {
+  outline: none;
+}
+
+/* ── Modal Header ───────────────────────────────────────────── */
+.juice-modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-1);
+}
+
+.juice-modal-title {
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-xl);
+  font-weight: var(--juice-weight-semibold);
+  color: var(--juice-color-text);
+  line-height: var(--juice-leading-tight);
+}
+
+.juice-modal-description {
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text-subtle);
+  line-height: var(--juice-leading-normal);
+}
+
+/* ── Modal Body ─────────────────────────────────────────────── */
+.juice-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-4);
+  color: var(--juice-color-text);
+  font-family: var(--juice-font-sans);
+  font-size: var(--juice-text-sm);
+  line-height: var(--juice-leading-normal);
+}
+
+/* ── Modal Footer ───────────────────────────────────────────── */
+.juice-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--juice-space-3);
+  margin-top: var(--juice-space-2);
+  flex-wrap: wrap;
+}
+
+/* ── Modal Close Button ─────────────────────────────────────── */
+.juice-modal-close-icon {
+  position: absolute;
+  top: var(--juice-space-4);
+  right: var(--juice-space-4);
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--juice-radius-md);
+  color: var(--juice-color-text-subtle);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color var(--juice-duration-fast) var(--juice-easing-standard), background-color
+    var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+.juice-modal-close-icon:hover {
+  color: var(--juice-color-text);
+  background-color: var(--juice-color-bg-muted);
+}
+
+.juice-modal-close-icon:focus-visible {
+  outline: 2px solid var(--juice-color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Mobile Viewport Adaptations ────────────────────────────── */
+@media (max-width: 640px) {
+  .juice-modal-content {
+    width: calc(100vw - var(--juice-space-4));
+    padding: var(--juice-space-5);
+    border-radius: var(--juice-radius-lg);
+  }
+
+  .juice-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .juice-modal-footer > * {
+    width: 100%;
+  }
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .juice-modal-overlay,
+  .juice-modal-content {
+    transition: none;
+  }
+}
