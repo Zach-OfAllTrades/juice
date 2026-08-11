@@ -15,6 +15,11 @@ describe('Checkbox', () => {
     expect(checkbox).toBeChecked();
   });
 
+  it('applies labelPosition class correctly', () => {
+    const { container } = render(<Checkbox label="Left label" labelPosition="left" />);
+    expect(container.firstChild).toHaveClass('juice-checkbox-wrapper--label-left');
+  });
+
   it('renders description text', () => {
     render(<Checkbox label="Option" description="Extra details" />);
     expect(screen.getByText('Extra details')).toBeInTheDocument();

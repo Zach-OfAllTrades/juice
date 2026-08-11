@@ -1,6 +1,8 @@
 import { type InputHTMLAttributes, type ReactNode, useEffect, useId, useRef } from 'react';
 import './Checkbox.css';
 
+export type CheckboxLabelPosition = 'top' | 'bottom' | 'left' | 'right';
+
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   /** Label text displayed beside the checkbox */
   label?: ReactNode;
@@ -10,17 +12,19 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   error?: string;
   /** Indeterminate mixed state (e.g. for partially selected parent groups) */
   indeterminate?: boolean;
+  /** Position of label relative to the checkbox box (default: 'right') */
+  labelPosition?: CheckboxLabelPosition;
 }
 
 /**
- * Checkbox — native `<input type="checkbox">` wrapper.
+ * Checkbox — native `<input type="checkbox">` wrapper with label positioning.
  *
  * Implements low-ROI native HTML wrapping with zero JavaScript overhead.
- * Handles checked, indeterminate, focus, and error states accessibly.
+ * Handles checked, indeterminate, focus, labelPosition, and error states accessibly.
  *
  * @example
  * ```tsx
- * <Checkbox label="Accept Terms and Conditions" required />
+ * <Checkbox label="Accept Terms and Conditions" labelPosition="right" required />
  * ```
  */
 export function Checkbox({
@@ -29,6 +33,7 @@ export function Checkbox({
   error,
   indeterminate = false,
   disabled = false,
+  labelPosition = 'right',
   id: propId,
   className = '',
   ...props
@@ -48,6 +53,7 @@ export function Checkbox({
       htmlFor={id}
       className={[
         'juice-checkbox-wrapper',
+        `juice-checkbox-wrapper--label-${labelPosition}`,
         disabled && 'juice-checkbox-wrapper--disabled',
         className,
       ]
