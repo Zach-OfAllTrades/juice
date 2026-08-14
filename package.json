@@ -29,7 +29,8 @@
       "import": "./dist/organisms.js",
       "require": "./dist/organisms.cjs"
     },
-    "./styles": "./dist/styles/tokens.css",
+    "./styles": "./dist/styles/juice.css",
+    "./tokens": "./dist/styles/tokens.css",
     "./reset": "./dist/styles/reset.css"
   },
   "files": [
@@ -40,7 +41,8 @@
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "vite build && tsc -p tsconfig.build.json",
+    "build": "vite build && tsc -p tsconfig.build.json && cp src/styles/reset.css dist/styles/reset.css && cp src/tokens/tokens.css dist/styles/tokens.css",
+    "build:watch": "vite build --watch",
     "build:types": "tsc -p tsconfig.build.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

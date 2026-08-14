@@ -115,10 +115,12 @@
   --juice-easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
 
   /* ── Z-index ─────────────────────────────────────────────────── */
-  --juice-z-dropdown: 1000;
-  --juice-z-sticky: 1100;
-  --juice-z-overlay: 1200;
-  --juice-z-modal: 1300;
+  /* Dropdown/select popovers sit above modal/overlay: they can be opened
+     from within an already-open Modal or Drawer and must render above it. */
+  --juice-z-sticky: 1000;
+  --juice-z-overlay: 1100;
+  --juice-z-modal: 1200;
+  --juice-z-dropdown: 1300;
   --juice-z-toast: 1400;
 
   /* ── Controls default to light ─────────────────────────────── */
