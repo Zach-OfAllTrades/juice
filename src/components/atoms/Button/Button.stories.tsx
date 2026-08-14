@@ -8,7 +8,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'ghost', 'danger', 'danger-ghost'],
+      options: ['primary', 'secondary', 'ghost', 'danger', 'danger-ghost', 'link', 'danger-link'],
     },
     size: {
       control: 'select',
@@ -42,6 +42,14 @@ export const Danger: Story = {
 
 export const DangerGhost: Story = {
   args: { variant: 'danger-ghost', size: 'md', children: 'Remove' },
+};
+
+export const Link: Story = {
+  args: { variant: 'link', size: 'md', children: 'Learn more' },
+};
+
+export const DangerLink: Story = {
+  args: { variant: 'danger-link', size: 'md', children: 'Remove item' },
 };
 
 export const Loading: Story = {
@@ -193,6 +201,8 @@ export const AllVariants: Story = {
       <Button variant="ghost">Ghost</Button>
       <Button variant="danger">Danger</Button>
       <Button variant="danger-ghost">Danger Ghost</Button>
+      <Button variant="link">Link</Button>
+      <Button variant="danger-link">Danger Link</Button>
     </div>
   ),
 };
