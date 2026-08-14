@@ -1,4 +1,5 @@
 export * from './Modal';
+export * from './ConfirmDialog';
 export * from './Select';
 export * from './Card';
 export * from './Drawer';
