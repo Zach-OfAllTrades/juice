@@ -44,4 +44,12 @@ describe('Button', () => {
     const { container } = render(<Button variant="danger">Delete</Button>);
     expect(container.firstChild).toHaveClass('juice-btn--danger');
   });
+
+  it('renders link and danger-link variant classes', () => {
+    const { container: link } = render(<Button variant="link">Learn more</Button>);
+    expect(link.firstChild).toHaveClass('juice-btn--link');
+
+    const { container: dangerLink } = render(<Button variant="danger-link">Remove</Button>);
+    expect(dangerLink.firstChild).toHaveClass('juice-btn--danger-link');
+  });
 });

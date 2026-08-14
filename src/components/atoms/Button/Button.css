@@ -147,6 +147,34 @@
   background-color: var(--juice-color-danger-subtle);
 }
 
+/* Link — minimal, text-only, for low-emphasis inline actions */
+.juice-btn--link {
+  background-color: transparent;
+  color: var(--juice-color-brand);
+  border-color: transparent;
+  text-decoration: none;
+}
+.juice-btn--link:hover:not(:disabled) {
+  text-decoration: underline;
+}
+.juice-btn--link:active:not(:disabled) {
+  color: var(--juice-color-brand-active);
+}
+
+/* Danger link */
+.juice-btn--danger-link {
+  background-color: transparent;
+  color: var(--juice-color-danger);
+  border-color: transparent;
+  text-decoration: none;
+}
+.juice-btn--danger-link:hover:not(:disabled) {
+  text-decoration: underline;
+}
+.juice-btn--danger-link:active:not(:disabled) {
+  color: var(--juice-color-danger-hover);
+}
+
 /* ── Loading state ──────────────────────────────────────────── */
 .juice-btn--loading {
   position: relative;
@@ -170,8 +198,13 @@
 
 .juice-btn--secondary.juice-btn--loading::after,
 .juice-btn--ghost.juice-btn--loading::after,
-.juice-btn--danger-ghost.juice-btn--loading::after {
+.juice-btn--danger-ghost.juice-btn--loading::after,
+.juice-btn--link.juice-btn--loading::after {
   color: var(--juice-color-brand);
+}
+
+.juice-btn--danger-link.juice-btn--loading::after {
+  color: var(--juice-color-danger);
 }
 
 @keyframes juice-spin {
