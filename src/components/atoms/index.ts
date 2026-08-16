@@ -1,4 +1,6 @@
 export * from './Button';
+export * from './Text';
+export * from './Heading';
 export * from './Badge';
 export * from './Skeleton';
 export * from './Input';

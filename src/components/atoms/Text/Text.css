@@ -1,0 +1,55 @@
+.juice-text {
+  font-family: var(--juice-font-sans);
+  line-height: var(--juice-leading-normal);
+  margin: 0;
+}
+
+/* ── Sizes ───────────────────────────────────────────────────── */
+.juice-text--xs {
+  font-size: var(--juice-text-xs);
+}
+.juice-text--sm {
+  font-size: var(--juice-text-sm);
+}
+.juice-text--base {
+  font-size: var(--juice-text-base);
+}
+.juice-text--lg {
+  font-size: var(--juice-text-lg);
+}
+.juice-text--xl {
+  font-size: var(--juice-text-xl);
+  line-height: var(--juice-leading-tight);
+}
+.juice-text--2xl {
+  font-size: var(--juice-text-2xl);
+  line-height: var(--juice-leading-tight);
+}
+
+/* ── Weights ─────────────────────────────────────────────────── */
+.juice-text--regular {
+  font-weight: var(--juice-weight-regular);
+}
+.juice-text--medium {
+  font-weight: var(--juice-weight-medium);
+}
+.juice-text--semibold {
+  font-weight: var(--juice-weight-semibold);
+}
+.juice-text--bold {
+  font-weight: var(--juice-weight-bold);
+}
+
+/* ── Tones ───────────────────────────────────────────────────── */
+.juice-text--default {
+  color: var(--juice-color-text);
+}
+.juice-text--muted {
+  color: var(--juice-color-text-subtle);
+}
+.juice-text--danger {
+  color: var(--juice-color-danger);
+}
+.juice-text--success {
+  color: var(--juice-color-success);
+}
