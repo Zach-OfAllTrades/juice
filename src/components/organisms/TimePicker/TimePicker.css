@@ -1,0 +1,128 @@
+/* ── Trigger ─────────────────────────────────────────────────── */
+.juice-time-picker-trigger {
+  cursor: text;
+  text-align: left;
+}
+
+/* ── Popover Content ─────────────────────────────────────────── */
+.juice-time-picker-content {
+  z-index: var(--juice-z-dropdown);
+  background-color: var(--juice-color-surface-raised);
+  color: var(--juice-color-text);
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-lg);
+  box-shadow: var(--juice-shadow-lg);
+  padding: var(--juice-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-3);
+  font-family: var(--juice-font-sans);
+
+  /* Animation */
+  opacity: 1;
+  transition: opacity var(--juice-duration-fast) var(--juice-easing-standard), transform
+    var(--juice-duration-fast) var(--juice-easing-standard);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+
+.juice-time-picker-content[data-state="closed"] {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+}
+
+/* ── Columns ─────────────────────────────────────────────────── */
+.juice-time-picker-columns {
+  --juice-time-picker-row-height: 2.25rem;
+
+  display: flex;
+  gap: var(--juice-space-1);
+  position: relative;
+}
+
+/* Centered highlight band, shared across all columns */
+.juice-time-picker-columns::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: var(--juice-time-picker-row-height);
+  transform: translateY(-50%);
+  background-color: var(--juice-color-bg-subtle);
+  border-radius: var(--juice-radius-md);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.juice-time-picker-column {
+  position: relative;
+  z-index: 1;
+  width: 4rem;
+  height: calc(var(--juice-time-picker-row-height) * 5);
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+.juice-time-picker-column::-webkit-scrollbar {
+  display: none;
+}
+
+.juice-time-picker-column__pad {
+  height: calc(var(--juice-time-picker-row-height) * 2);
+  flex-shrink: 0;
+}
+
+.juice-time-picker-row {
+  height: var(--juice-time-picker-row-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--juice-text-base);
+  font-weight: var(--juice-weight-medium);
+  color: var(--juice-color-text-subtle);
+  scroll-snap-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+.juice-time-picker-row--selected {
+  color: var(--juice-color-brand);
+  font-weight: var(--juice-weight-semibold);
+}
+
+.juice-time-picker-row--disabled {
+  color: var(--juice-color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.juice-time-picker-row:not(.juice-time-picker-row--disabled):hover {
+  color: var(--juice-color-text);
+}
+.juice-time-picker-row--selected:not(.juice-time-picker-row--disabled):hover {
+  color: var(--juice-color-brand-hover);
+}
+
+/* ── Actions row ─────────────────────────────────────────────── */
+.juice-time-picker-actions {
+  width: 100%;
+}
+.juice-time-picker-actions > .juice-btn {
+  flex: 1;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .juice-time-picker-content {
+    transition: none;
+  }
+  .juice-time-picker-column {
+    scroll-behavior: auto;
+  }
+}
