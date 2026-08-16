@@ -44,7 +44,21 @@ export function RowActions({ className = '', children, ...props }: HTMLAttribute
 }
 
 /* ── Declarative Row ────────────────────────────────────────── */
+export type RowVariant = 'plain' | 'card';
+
 export interface RowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+  /**
+   * Visual surface. 'plain' (default) is a bare row meant to sit inside
+   * something else — a `Card`, a bordered list wrapper — with a divider
+   * between consecutive rows stacked directly. 'card' makes the row a
+   * self-contained bordered/padded surface for when each row needs to read
+   * as its own separate card in a list, without wrapping it in `Card`
+   * yourself; stack multiple with your own gap (e.g. a flex column), not a
+   * divider, since they're meant to look like separate cards.
+   */
+  variant?: RowVariant;
+  /** Add interactive hover elevation (only visible on the 'card' variant) */
+  interactive?: boolean;
   /** Primary row title, rendered on the left */
   title?: ReactNode;
   /** Optional subtitle/meta text rendered below the title */
@@ -59,13 +73,17 @@ export interface RowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> 
  * Row — the common "title (+ optional subtitle/meta) on the left, trailing
  * actions on the right" list-item layout molecule.
  *
- * Purely a layout wrapper — no interactive/ARIA behavior of its own. Pairs
- * naturally as `Card` body content for a list of rows inside a card, or
- * stacked standalone as a simple list (consecutive `Row`s get a divider).
+ * Purely a layout wrapper — no interactive/ARIA behavior of its own beyond
+ * the optional hover elevation. Pairs naturally as `Card` body content for a
+ * list of rows inside one shared card (variant="plain", the default), stands
+ * on its own as a self-contained bordered surface (variant="card"), or
+ * stacks standalone as a simple divided list (consecutive plain `Row`s get a
+ * divider).
  *
  * @example
  * ```tsx
  * <Row
+ *   variant="card"
  *   title="Finish quarterly report"
  *   meta="Due tomorrow"
  *   actions={
@@ -77,11 +95,30 @@ export interface RowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> 
  * />
  * ```
  */
-export function Row({ title, meta, actions, className = '', children, ...props }: RowProps) {
+export function Row({
+  variant = 'plain',
+  interactive = false,
+  title,
+  meta,
+  actions,
+  className = '',
+  children,
+  ...props
+}: RowProps) {
   const hasContent = Boolean(title || meta || children);
 
   return (
-    <div className={['juice-row', className].filter(Boolean).join(' ')} {...props}>
+    <div
+      className={[
+        'juice-row',
+        `juice-row--${variant}`,
+        interactive && 'juice-row--interactive',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      {...props}
+    >
       {hasContent && (
         <RowContent>
           {title && <RowTitle>{title}</RowTitle>}

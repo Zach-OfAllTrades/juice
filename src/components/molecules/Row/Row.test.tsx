@@ -35,4 +35,18 @@ describe('Row', () => {
     const { container } = render(<Row actions={<Button size="sm">Edit</Button>} />);
     expect(container.querySelector('.juice-row-content')).not.toBeInTheDocument();
   });
+
+  it('defaults to the plain variant', () => {
+    const { container } = render(<Row title="Plain row" />);
+    const row = container.querySelector('.juice-row');
+    expect(row).toHaveClass('juice-row--plain');
+    expect(row).not.toHaveClass('juice-row--card');
+  });
+
+  it('applies the card variant and interactive class', () => {
+    const { container } = render(<Row variant="card" interactive title="Card row" />);
+    const row = container.querySelector('.juice-row');
+    expect(row).toHaveClass('juice-row--card');
+    expect(row).toHaveClass('juice-row--interactive');
+  });
 });

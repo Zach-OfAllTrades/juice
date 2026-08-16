@@ -10,6 +10,8 @@ const meta = {
   component: Row,
   tags: ['autodocs'],
   argTypes: {
+    variant: { control: 'select', options: ['plain', 'card'] },
+    interactive: { control: 'boolean' },
     title: { control: 'text' },
     meta: { control: 'text' },
   },
@@ -86,6 +88,47 @@ export const StackedList: Story = {
         }
       />
       <Row
+        title="Plan Q3 roadmap"
+        meta="No due date"
+        actions={
+          <Button variant="ghost" size="sm">
+            Snooze
+          </Button>
+        }
+      />
+    </div>
+  ),
+};
+
+export const StackedCards: Story = {
+  args: { children: null },
+  render: () => (
+    <div style={{ width: '28rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+      <Row
+        variant="card"
+        interactive
+        title="Write onboarding docs"
+        meta="Due Friday"
+        actions={
+          <Button variant="ghost" size="sm">
+            Snooze
+          </Button>
+        }
+      />
+      <Row
+        variant="card"
+        interactive
+        title="Review pull request #482"
+        meta="Due today"
+        actions={
+          <Button variant="ghost" size="sm">
+            Snooze
+          </Button>
+        }
+      />
+      <Row
+        variant="card"
+        interactive
         title="Plan Q3 roadmap"
         meta="No due date"
         actions={
