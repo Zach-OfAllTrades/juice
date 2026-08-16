@@ -1,0 +1,74 @@
+/* ── Row ─────────────────────────────────────────────────────── */
+.juice-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--juice-space-4);
+  padding-block: var(--juice-space-3);
+  font-family: var(--juice-font-sans);
+}
+
+/* Divider between consecutive plain rows stacked as a list */
+.juice-row + .juice-row {
+  border-top: 1px solid var(--juice-color-border);
+}
+
+/* ── Card variant: a self-contained bordered/padded surface, matching
+   Card's own outline styling, so a Row doesn't need to be wrapped in a
+   Card just to look like one. ─────────────────────────────────────── */
+.juice-row--card {
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-xl);
+  background-color: var(--juice-color-surface);
+  padding-inline: var(--juice-space-4);
+  transition: box-shadow var(--juice-duration-fast) var(--juice-easing-standard), border-color
+    var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+/* No divider override needed for consecutive card rows: each already has
+   its own full border from .juice-row--card above, so the plain variant's
+   `.juice-row + .juice-row` border-top rule (higher specificity, but the
+   same color) is harmlessly redundant rather than conflicting. Consumers
+   stacking multiple card rows should space them with their own layout gap
+   (a flex column), not rely on either variant's border. */
+
+.juice-row--card.juice-row--interactive {
+  cursor: pointer;
+}
+
+.juice-row--card.juice-row--interactive:hover {
+  border-color: var(--juice-color-border-strong);
+  box-shadow: var(--juice-shadow-lg);
+}
+
+/* ── Row Content (left side: title + meta) ──────────────────── */
+.juice-row-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-1);
+  min-width: 0;
+}
+
+.juice-row-title {
+  font-size: var(--juice-text-sm);
+  font-weight: var(--juice-weight-medium);
+  color: var(--juice-color-text);
+  line-height: var(--juice-leading-tight);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.juice-row-meta {
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text-subtle);
+  line-height: var(--juice-leading-normal);
+}
+
+/* ── Row Actions (right side: trailing action group) ────────── */
+.juice-row-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--juice-space-2);
+  flex-shrink: 0;
+}
