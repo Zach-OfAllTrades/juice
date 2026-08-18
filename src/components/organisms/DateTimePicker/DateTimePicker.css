@@ -1,0 +1,95 @@
+/* ── Trigger ─────────────────────────────────────────────────── */
+.juice-datetime-picker-trigger {
+  cursor: text;
+  text-align: left;
+}
+
+/* ── Popover Content ─────────────────────────────────────────── */
+.juice-datetime-picker-content {
+  z-index: var(--juice-z-dropdown);
+  background-color: var(--juice-color-surface-raised);
+  color: var(--juice-color-text);
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-lg);
+  box-shadow: var(--juice-shadow-lg);
+  padding: var(--juice-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-3);
+  font-family: var(--juice-font-sans);
+
+  /* Animation */
+  opacity: 1;
+  transition: opacity var(--juice-duration-fast) var(--juice-easing-standard), transform
+    var(--juice-duration-fast) var(--juice-easing-standard);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+
+.juice-datetime-picker-content[data-state="closed"] {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+}
+
+/* ── Side-by-side panels ─────────────────────────────────────── */
+.juice-datetime-picker-panels {
+  display: flex;
+  /* Must NOT be `stretch`: TimePicker's columns are an intentionally
+     taller-than-visible scroll window (rows overflow past the visible 5
+     rows for the scroll-snap centering trick), so stretching this row to
+     match their full unclipped natural height would inflate the calendar
+     panel too. The calendar panel sizes to its own natural content, and
+     DateTimePickerContent measures it via JS to set the time panel's
+     height explicitly (see `panelHeight` in DateTimePicker.tsx). */
+  align-items: flex-start;
+  gap: var(--juice-space-3);
+}
+
+.juice-datetime-picker-date-panel {
+  /* Calendar cells are explicitly sized (see DatePicker.css's
+     `--cell--day`), so this panel's natural width already comes out wider
+     than the time columns' fixed-width panel — landing close to the 60/40
+     split these two panels should read as. */
+  flex: 0 1 auto;
+}
+
+.juice-datetime-picker-time-panel {
+  flex: 0 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* Stretch TimePicker's columns (normally a fixed 5-row-tall viewport) to
+   fill the full popover height so they match the calendar's height instead
+   of leaving empty space below a top-aligned, off-center highlight band. */
+.juice-datetime-picker-time-panel .juice-time-picker-columns {
+  height: 100%;
+}
+.juice-datetime-picker-time-panel .juice-time-picker-column {
+  height: 100%;
+}
+
+.juice-datetime-picker-divider {
+  align-self: stretch;
+  width: 1px;
+  background-color: var(--juice-color-border);
+}
+
+/* ── Actions row ─────────────────────────────────────────────── */
+.juice-datetime-picker-actions {
+  width: 100%;
+}
+.juice-datetime-picker-actions > .juice-btn {
+  flex: 1;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .juice-datetime-picker-content {
+    transition: none;
+  }
+}

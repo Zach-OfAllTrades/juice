@@ -72,7 +72,7 @@ function focusNextTabbable(current: HTMLElement) {
 
 /* ── Context ─────────────────────────────────────────────────── */
 
-interface TimePickerContextValue {
+export interface TimePickerContextValue {
   format: TimeFormat;
   step: number;
   hourValues: number[];
@@ -97,9 +97,9 @@ interface TimePickerContextValue {
   contentId: string;
 }
 
-const TimePickerContext = createContext<TimePickerContextValue | null>(null);
+export const TimePickerContext = createContext<TimePickerContextValue | null>(null);
 
-function useTimePickerContext(componentName: string): TimePickerContextValue {
+export function useTimePickerContext(componentName: string): TimePickerContextValue {
   const ctx = useContext(TimePickerContext);
   if (!ctx) {
     throw new Error(`<TimePicker.${componentName} /> must be rendered inside <TimePicker.Root>.`);
@@ -578,22 +578,46 @@ function TimePickerColumn<T extends number | string>({
   const rowRefs = useRef(new Map<T, HTMLDivElement>());
   const isProgrammaticScroll = useRef(false);
   const scrollEndTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const lastHeightRef = useRef<number | null>(null);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container || activeValue === null) return undefined;
-    const row = rowRefs.current.get(activeValue);
-    if (!row) return undefined;
 
-    const rowHeight = row.offsetHeight || FALLBACK_ROW_HEIGHT;
-    const targetTop = row.offsetTop - container.clientHeight / 2 + rowHeight / 2;
-    isProgrammaticScroll.current = true;
-    container.scrollTo({ top: targetTop, behavior: 'smooth' });
+    function scrollToActive(behavior: ScrollBehavior) {
+      const row = rowRefs.current.get(activeValue as T);
+      if (!container || !row) return;
+      const rowHeight = row.offsetHeight || FALLBACK_ROW_HEIGHT;
+      const targetTop = row.offsetTop - container.clientHeight / 2 + rowHeight / 2;
+      isProgrammaticScroll.current = true;
+      container.scrollTo({ top: targetTop, behavior });
+    }
 
+    scrollToActive('smooth');
     const guard = setTimeout(() => {
       isProgrammaticScroll.current = false;
     }, PROGRAMMATIC_SCROLL_GUARD);
-    return () => clearTimeout(guard);
+
+    // DateTimePicker measures and applies the calendar panel's height to this
+    // column asynchronously, on a later render than the one this effect's
+    // initial scroll ran against — re-center (without animating) whenever the
+    // column's own rendered height changes so it doesn't stay scrolled for a
+    // viewport size that's since gone stale.
+    let resizeObserver: ResizeObserver | undefined;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver((entries) => {
+        const newHeight = entries[0]?.contentRect.height;
+        if (newHeight === undefined || newHeight === lastHeightRef.current) return;
+        lastHeightRef.current = newHeight;
+        scrollToActive('auto');
+      });
+      resizeObserver.observe(container);
+    }
+
+    return () => {
+      clearTimeout(guard);
+      resizeObserver?.disconnect();
+    };
   }, [activeValue]);
 
   function handleScroll() {
@@ -690,16 +714,16 @@ function TimePickerColumn<T extends number | string>({
   );
 }
 
-/* ── Content ─────────────────────────────────────────────────── */
+/* ── Columns panel ───────────────────────────────────────────── */
 
-export interface TimePickerContentProps
-  extends Omit<ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, 'children'> {}
-
-export const TimePickerContent = forwardRef<
-  ElementRef<typeof PopoverPrimitive.Content>,
-  TimePickerContentProps
->(({ className = '', sideOffset = 4, align = 'start', ...props }, ref) => {
-  const ctx = useTimePickerContext('Content');
+/**
+ * The hour/minute/(period) scroll-snap columns, decoupled from the Popover
+ * chrome and action buttons so it can be embedded directly by
+ * DateTimePicker (which supplies its own constructed `TimePickerContextValue`
+ * and owns a single shared popover alongside DatePicker's calendar).
+ */
+export function TimePickerColumnsPanel() {
+  const ctx = useTimePickerContext('ColumnsPanel');
   const {
     format,
     hourValues,
@@ -712,10 +736,7 @@ export const TimePickerContent = forwardRef<
     setDigitBuffer,
     commitSegment,
     isRowDisabled,
-    clear,
-    requestClose,
     baseId,
-    contentId,
   } = ctx;
 
   function select(segment: TimeSegment, value: number | 'AM' | 'PM') {
@@ -729,6 +750,53 @@ export const TimePickerContent = forwardRef<
   }
 
   return (
+    <div className="juice-time-picker-columns">
+      <TimePickerColumn
+        values={hourValues}
+        activeValue={hour}
+        onSelect={(v) => select('hour', v)}
+        isDisabled={(v) => isRowDisabled('hour', v)}
+        formatRow={(v) => formatHourDisplay(v, format)}
+        getRowId={(v) => getRowId('hour', v)}
+        ariaLabel="Hour"
+      />
+      <TimePickerColumn
+        values={minuteValues}
+        activeValue={minute}
+        onSelect={(v) => select('minute', v)}
+        isDisabled={(v) => isRowDisabled('minute', v)}
+        formatRow={(v) => formatMinuteDisplay(v)}
+        getRowId={(v) => getRowId('minute', v)}
+        ariaLabel="Minute"
+      />
+      {segments.includes('period') && (
+        <TimePickerColumn
+          values={['AM', 'PM']}
+          activeValue={period}
+          onSelect={(v) => select('period', v)}
+          isDisabled={(v) => isRowDisabled('period', v)}
+          formatRow={(v) => v}
+          getRowId={(v) => getRowId('period', v)}
+          ariaLabel="AM or PM"
+        />
+      )}
+    </div>
+  );
+}
+
+/* ── Content ─────────────────────────────────────────────────── */
+
+export interface TimePickerContentProps
+  extends Omit<ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, 'children'> {}
+
+export const TimePickerContent = forwardRef<
+  ElementRef<typeof PopoverPrimitive.Content>,
+  TimePickerContentProps
+>(({ className = '', sideOffset = 4, align = 'start', ...props }, ref) => {
+  const ctx = useTimePickerContext('Content');
+  const { clear, requestClose, contentId } = ctx;
+
+  return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
         ref={ref}
@@ -740,37 +808,7 @@ export const TimePickerContent = forwardRef<
         onCloseAutoFocus={(e) => e.preventDefault()}
         {...props}
       >
-        <div className="juice-time-picker-columns">
-          <TimePickerColumn
-            values={hourValues}
-            activeValue={hour}
-            onSelect={(v) => select('hour', v)}
-            isDisabled={(v) => isRowDisabled('hour', v)}
-            formatRow={(v) => formatHourDisplay(v, format)}
-            getRowId={(v) => getRowId('hour', v)}
-            ariaLabel="Hour"
-          />
-          <TimePickerColumn
-            values={minuteValues}
-            activeValue={minute}
-            onSelect={(v) => select('minute', v)}
-            isDisabled={(v) => isRowDisabled('minute', v)}
-            formatRow={(v) => formatMinuteDisplay(v)}
-            getRowId={(v) => getRowId('minute', v)}
-            ariaLabel="Minute"
-          />
-          {segments.includes('period') && (
-            <TimePickerColumn
-              values={['AM', 'PM']}
-              activeValue={period}
-              onSelect={(v) => select('period', v)}
-              isDisabled={(v) => isRowDisabled('period', v)}
-              formatRow={(v) => v}
-              getRowId={(v) => getRowId('period', v)}
-              ariaLabel="AM or PM"
-            />
-          )}
-        </div>
+        <TimePickerColumnsPanel />
 
         <ButtonGroup
           variant="segmented"
@@ -872,3 +910,4 @@ export function TimePicker({
 TimePicker.Root = TimePickerRoot;
 TimePicker.Trigger = TimePickerTrigger;
 TimePicker.Content = TimePickerContent;
+TimePicker.ColumnsPanel = TimePickerColumnsPanel;

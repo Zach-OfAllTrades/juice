@@ -73,7 +73,12 @@
 }
 
 .juice-time-picker-column__pad {
-  height: calc(var(--juice-time-picker-row-height) * 2);
+  /* A percentage of the column's own (always-definite) height, not a fixed
+     row count — so the first/last row can still scroll to dead-center
+     regardless of how tall the column ends up (5-row default, or stretched
+     to match DateTimePicker's calendar panel). For the default 5-row-tall
+     column this resolves to exactly 2 rows, same as before. */
+  height: calc(50% - (var(--juice-time-picker-row-height) / 2));
   flex-shrink: 0;
 }
 
