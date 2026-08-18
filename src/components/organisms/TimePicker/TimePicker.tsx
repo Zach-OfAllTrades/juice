@@ -1,4 +1,5 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover';
+import { RemoveScroll } from 'react-remove-scroll';
 import {
   type ComponentPropsWithoutRef,
   type ElementRef,
@@ -794,7 +795,7 @@ export const TimePickerContent = forwardRef<
   TimePickerContentProps
 >(({ className = '', sideOffset = 4, align = 'start', ...props }, ref) => {
   const ctx = useTimePickerContext('Content');
-  const { clear, requestClose, contentId } = ctx;
+  const { clear, requestClose, contentId, open } = ctx;
 
   return (
     <PopoverPrimitive.Portal>
@@ -808,7 +809,20 @@ export const TimePickerContent = forwardRef<
         onCloseAutoFocus={(e) => e.preventDefault()}
         {...props}
       >
-        <TimePickerColumnsPanel />
+        {/* The Popover backing this content is deliberately non-modal (see
+            TimePickerRoot) so it doesn't trap focus away from the trigger
+            input's combobox keyboard handling. But a non-modal Popover
+            mounts no scroll lock of its own — when this content is opened
+            from inside a modal Dialog/Drawer, that ancestor's scroll lock
+            (react-remove-scroll) stays the page's only active listener and
+            blocks wheel/touch scrolling on this popover's content too,
+            since it's portaled outside the Dialog's own DOM subtree. A
+            plain, non-restrictive RemoveScroll here claims the top of that
+            shared lock stack while open, handing scroll authority back to
+            this content specifically — see react-remove-scroll's `lockStack`. */}
+        <RemoveScroll enabled={open} allowPinchZoom removeScrollBar={false}>
+          <TimePickerColumnsPanel />
+        </RemoveScroll>
 
         <ButtonGroup
           variant="segmented"
