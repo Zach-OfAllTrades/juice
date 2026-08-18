@@ -1,4 +1,5 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover';
+import { RemoveScroll } from 'react-remove-scroll';
 import {
   type ComponentPropsWithoutRef,
   type ElementRef,
@@ -818,9 +819,15 @@ export const DateTimePickerContent = forwardRef<
             className="juice-datetime-picker-time-panel"
             style={panelHeight ? { height: panelHeight } : undefined}
           >
-            <TimePickerContext.Provider value={timePickerCtxValue}>
-              <TimePickerColumnsPanel />
-            </TimePickerContext.Provider>
+            {/* See the matching RemoveScroll note in TimePickerContent — this
+                popover is non-modal (no scroll lock of its own), so an
+                ancestor modal Dialog/Drawer's scroll lock would otherwise
+                claim wheel/touch scrolling on these columns too. */}
+            <RemoveScroll enabled={open} allowPinchZoom removeScrollBar={false}>
+              <TimePickerContext.Provider value={timePickerCtxValue}>
+                <TimePickerColumnsPanel />
+              </TimePickerContext.Provider>
+            </RemoveScroll>
           </div>
         </div>
 
