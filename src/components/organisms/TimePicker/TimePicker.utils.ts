@@ -4,6 +4,14 @@
  * can be unit tested directly, without simulating real scroll/DOM behavior.
  */
 
+export type {
+  DigitComplete,
+  DigitPartial,
+  DigitRejected,
+  DigitState,
+} from '../../../utils/digitMask';
+export { matchPeriodKey, nextDigitState } from '../../../utils/digitMask';
+
 export type TimeFormat = '12h' | '24h';
 
 export interface TimeValue {
@@ -78,81 +86,6 @@ export function roundMinuteToStep(minute: number, step: number | undefined): num
   return values.reduce((closest, candidate) =>
     Math.abs(candidate - minute) < Math.abs(closest - minute) ? candidate : closest
   );
-}
-
-/* ── Digit masking state machine ────────────────────────────── */
-
-export interface DigitPartial {
-  status: 'partial';
-  buffer: string;
-  /** The value that would commit if the user stops typing/navigates away now, if any. */
-  tentativeValue: number | null;
-}
-export interface DigitComplete {
-  status: 'complete';
-  value: number;
-  /** Present when this digit didn't extend the buffer; the caller should
-   * commit `value` (from the buffer), advance the segment, and reprocess
-   * this same digit as the first keystroke of the new active segment. */
-  reprocessDigit?: string;
-}
-export interface DigitRejected {
-  status: 'rejected';
-}
-export type DigitState = DigitPartial | DigitComplete | DigitRejected;
-
-/**
- * Advances a numeric segment's typing buffer by one digit keystroke.
- *
- * Handles, uniformly, via brute-force existence checks against the segment's
- * valid value list:
- * - immediate single-digit completion when no two-digit extension exists
- *   (e.g. typing "9" for a 0-59 minute completes instantly to 9)
- * - leading-zero completion (typing "0" then "5" completes to 5)
- * - tens-prefix completion (typing "1" then "0"/"1"/"2" completes to 10/11/12)
- * - fallback: if a second digit doesn't extend the buffer into any valid
- *   value, but the buffer alone was a valid standalone value, complete with
- *   the buffer's value and flag the new digit for reprocessing by the next
- *   segment.
- */
-export function nextDigitState(values: number[], buffer: string, digit: string): DigitState {
-  if (!/^[0-9]$/.test(digit)) return { status: 'rejected' };
-
-  if (buffer === '') {
-    const d = Number(digit);
-    const standalone = values.includes(d);
-    let hasExtension = false;
-    for (let e = 0; e <= 9; e++) {
-      const candidate = Number(`${digit}${e}`);
-      if (candidate !== d && values.includes(candidate)) {
-        hasExtension = true;
-        break;
-      }
-    }
-
-    if (!standalone && !hasExtension) return { status: 'rejected' };
-    if (standalone && !hasExtension) return { status: 'complete', value: d };
-    return { status: 'partial', buffer: digit, tentativeValue: standalone ? d : null };
-  }
-
-  const candidate = Number(buffer + digit);
-  if (values.includes(candidate)) {
-    return { status: 'complete', value: candidate };
-  }
-
-  const bufferValue = Number(buffer);
-  if (values.includes(bufferValue)) {
-    return { status: 'complete', value: bufferValue, reprocessDigit: digit };
-  }
-
-  return { status: 'partial', buffer, tentativeValue: null };
-}
-
-export function matchPeriodKey(key: string): 'AM' | 'PM' | null {
-  const k = key.toLowerCase();
-  if (k === 'a') return 'AM';
-  if (k === 'p') return 'PM';
-  return null;
 }
 
 /* ── Display formatting ─────────────────────────────────────── */

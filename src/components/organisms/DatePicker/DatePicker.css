@@ -1,0 +1,169 @@
+/* ── Trigger ─────────────────────────────────────────────────── */
+.juice-date-picker-trigger {
+  cursor: text;
+  text-align: left;
+}
+
+/* ── Popover Content ─────────────────────────────────────────── */
+.juice-date-picker-content {
+  z-index: var(--juice-z-dropdown);
+  background-color: var(--juice-color-surface-raised);
+  color: var(--juice-color-text);
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-lg);
+  box-shadow: var(--juice-shadow-lg);
+  padding: var(--juice-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-3);
+  font-family: var(--juice-font-sans);
+  width: 18.5rem;
+
+  /* Animation */
+  opacity: 1;
+  transition: opacity var(--juice-duration-fast) var(--juice-easing-standard), transform
+    var(--juice-duration-fast) var(--juice-easing-standard);
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+
+.juice-date-picker-content[data-state="closed"] {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+}
+
+/* ── Calendar ────────────────────────────────────────────────── */
+.juice-date-picker-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--juice-space-2);
+}
+
+.juice-date-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--juice-space-1);
+}
+
+.juice-date-picker-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: transparent;
+  border-radius: var(--juice-radius-md);
+  color: var(--juice-color-text-subtle);
+  font-size: var(--juice-text-lg);
+  cursor: pointer;
+  transition: background-color var(--juice-duration-fast) var(--juice-easing-standard);
+}
+.juice-date-picker-nav-btn:hover {
+  background-color: var(--juice-color-bg-subtle);
+  color: var(--juice-color-text);
+}
+
+.juice-date-picker-header-label {
+  border: none;
+  background: transparent;
+  color: var(--juice-color-text);
+  font-size: var(--juice-text-sm);
+  font-weight: var(--juice-weight-semibold);
+  padding: var(--juice-space-1) var(--juice-space-2);
+  border-radius: var(--juice-radius-md);
+  cursor: pointer;
+}
+.juice-date-picker-header-label:hover:not(:disabled) {
+  background-color: var(--juice-color-bg-subtle);
+}
+.juice-date-picker-header-label:disabled {
+  cursor: default;
+}
+
+.juice-date-picker-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.juice-date-picker-weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.75rem;
+  font-size: var(--juice-text-xs);
+  font-weight: var(--juice-weight-medium);
+  color: var(--juice-color-text-muted);
+}
+
+.juice-date-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.juice-date-picker-grid--months,
+.juice-date-picker-grid--years {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--juice-space-1);
+}
+
+.juice-date-picker-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  border: none;
+  background: transparent;
+  border-radius: var(--juice-radius-md);
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text);
+  cursor: pointer;
+  transition: background-color var(--juice-duration-fast) var(--juice-easing-standard);
+}
+.juice-date-picker-cell--tile {
+  height: 2.5rem;
+}
+.juice-date-picker-cell--day {
+  /* Explicit square sizing — without it the grid's `1fr` tracks shrink to
+     the digits' intrinsic width, making the calendar look cramped next to
+     TimePicker's fixed-width columns when embedded in DateTimePicker. */
+  width: 2.25rem;
+}
+.juice-date-picker-cell--outside {
+  color: var(--juice-color-text-muted);
+}
+.juice-date-picker-cell:not(.juice-date-picker-cell--disabled):hover {
+  background-color: var(--juice-color-bg-subtle);
+}
+.juice-date-picker-cell--selected {
+  background-color: var(--juice-color-brand);
+  color: var(--juice-color-brand-contrast);
+  font-weight: var(--juice-weight-semibold);
+}
+.juice-date-picker-cell--selected:hover {
+  background-color: var(--juice-color-brand-hover);
+}
+.juice-date-picker-cell--disabled {
+  color: var(--juice-color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ── Actions row ─────────────────────────────────────────────── */
+.juice-date-picker-actions {
+  width: 100%;
+}
+.juice-date-picker-actions > .juice-btn {
+  flex: 1;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .juice-date-picker-content {
+    transition: none;
+  }
+}
