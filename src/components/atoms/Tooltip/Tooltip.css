@@ -1,0 +1,31 @@
+.juice-tooltip-content {
+  max-width: 260px;
+  padding: var(--juice-space-2) var(--juice-space-3);
+  background-color: var(--juice-color-surface-raised);
+  color: var(--juice-color-text);
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-md);
+  box-shadow: var(--juice-shadow-lg);
+  font-size: var(--juice-text-sm);
+  line-height: var(--juice-leading-normal);
+  z-index: var(--juice-z-tooltip);
+  animation-duration: var(--juice-duration-fast);
+  animation-timing-function: var(--juice-easing-standard);
+}
+
+.juice-tooltip-content[data-state="delayed-open"] {
+  animation-name: juice-tooltip-fade-in;
+}
+
+.juice-tooltip-arrow {
+  fill: var(--juice-color-surface-raised);
+}
+
+@keyframes juice-tooltip-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

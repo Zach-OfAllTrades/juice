@@ -67,6 +67,7 @@
     "@radix-ui/react-popover": "^1.1.23",
     "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-tabs": "^1.1.21",
+    "@radix-ui/react-tooltip": "^1.2.16",
     "react-remove-scroll": "^2.7.2"
   },
   "devDependencies": {

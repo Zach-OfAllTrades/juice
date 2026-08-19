@@ -122,6 +122,7 @@
   --juice-z-modal: 1200;
   --juice-z-dropdown: 1300;
   --juice-z-toast: 1400;
+  --juice-z-tooltip: 1500;
 
   /* ── Controls default to light ─────────────────────────────── */
   color-scheme: light;
