@@ -82,7 +82,7 @@ export const ReadOnlyState: Story = {
 };
 
 export const ControlledState: Story = {
-  args: { children: null },
+  args: {},
   render: () => {
     const [value, setValue] = useState<DateTimeValue | null>({
       month: 1,
@@ -111,7 +111,7 @@ export const ControlledState: Story = {
 };
 
 export const InsideForm: Story = {
-  args: { children: null },
+  args: {},
   render: () => (
     <div style={{ maxWidth: 360 }}>
       <Form onSubmit={(e) => e.preventDefault()}>
@@ -134,7 +134,7 @@ export const InsideForm: Story = {
 };
 
 export const CompoundComposition: Story = {
-  args: { children: null },
+  args: {},
   render: () => (
     <DateTimePicker.Root
       defaultValue={{ month: 1, day: 1, year: 2026, hour: 9, minute: 0, period: 'AM' }}

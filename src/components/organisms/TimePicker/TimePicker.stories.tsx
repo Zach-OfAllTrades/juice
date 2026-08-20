@@ -91,7 +91,7 @@ export const ReadOnlyState: Story = {
 };
 
 export const ControlledState: Story = {
-  args: { children: null },
+  args: {},
   render: () => {
     const [value, setValue] = useState<TimeValue | null>({ hour: 9, minute: 0, period: 'AM' });
 
@@ -113,7 +113,7 @@ export const ControlledState: Story = {
 };
 
 export const InsideForm: Story = {
-  args: { children: null },
+  args: {},
   render: () => (
     <div style={{ maxWidth: 320 }}>
       <Form onSubmit={(e) => e.preventDefault()}>
@@ -136,7 +136,7 @@ export const InsideForm: Story = {
 };
 
 export const CompoundComposition: Story = {
-  args: { children: null },
+  args: {},
   render: () => (
     <TimePicker.Root defaultValue={{ hour: 9, minute: 0, period: 'AM' }} format="12h">
       <TimePicker.Trigger placeholder="Select a time" />

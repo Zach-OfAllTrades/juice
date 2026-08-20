@@ -17,3 +17,22 @@ if (typeof globalThis.ResizeObserver === 'undefined') {
     disconnect() {}
   } as unknown as typeof ResizeObserver;
 }
+
+// jsdom doesn't implement pointer capture either — Radix's Select opens its
+// listbox from a pointerdown handler that calls `hasPointerCapture` on the
+// trigger unconditionally.
+if (!Element.prototype.hasPointerCapture) {
+  Element.prototype.hasPointerCapture = () => false;
+}
+if (!Element.prototype.setPointerCapture) {
+  Element.prototype.setPointerCapture = () => {};
+}
+if (!Element.prototype.releasePointerCapture) {
+  Element.prototype.releasePointerCapture = () => {};
+}
+
+// ...nor scrollIntoView — Radix's Select scrolls the highlighted item into
+// view within its Viewport when the listbox opens.
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {};
+}

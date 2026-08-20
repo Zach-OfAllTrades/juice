@@ -75,7 +75,7 @@ export const ReadOnlyState: Story = {
 };
 
 export const ControlledState: Story = {
-  args: { children: null },
+  args: {},
   render: () => {
     const [value, setValue] = useState<DateValue | null>({ month: 1, day: 1, year: 2026 });
 
@@ -97,7 +97,7 @@ export const ControlledState: Story = {
 };
 
 export const InsideForm: Story = {
-  args: { children: null },
+  args: {},
   render: () => (
     <div style={{ maxWidth: 320 }}>
       <Form onSubmit={(e) => e.preventDefault()}>
@@ -120,7 +120,7 @@ export const InsideForm: Story = {
 };
 
 export const CompoundComposition: Story = {
-  args: { children: null },
+  args: {},
   render: () => (
     <DatePicker.Root defaultValue={{ month: 1, day: 1, year: 2026 }}>
       <DatePicker.Trigger placeholder="Select a date" />

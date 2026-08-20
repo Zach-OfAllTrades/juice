@@ -1,5 +1,4 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { RemoveScroll } from 'react-remove-scroll';
 import {
   type ComponentPropsWithoutRef,
   type ElementRef,
@@ -15,6 +14,7 @@ import {
   useRef,
   useState,
 } from 'react';
+import { RemoveScroll } from 'react-remove-scroll';
 import {
   type DigitState,
   matchPeriodKey,

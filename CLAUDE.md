@@ -21,6 +21,8 @@ Juice (`@zach-ofalltrades/juice`) is a headless, framework-agnostic React compon
 
 Oxlint (`.oxlintrc.json`) is also configured for React-specific rules (`react/rules-of-hooks`, `react/only-export-components`) but Biome (`biome.json`) is the primary formatter/linter driving `lint`/`format`/`check`.
 
+Tests run under Vitest + jsdom (`vitest.config.ts`) with `src/test/setup.ts` loaded globally. jsdom doesn't implement `scrollTo` or `ResizeObserver`, so setup.ts stubs both as no-ops — needed for scroll-snap organisms (TimePicker/DateTimePicker) and Radix internals (Tooltip's Arrow measurement) that call them.
+
 ## Architecture
 
 ### Atomic design structure
