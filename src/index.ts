@@ -1,11 +1,11 @@
 /**
- * @zach-ofallTrades/juice
+ * @zach-ofalltrades/juice
  * Root barrel — re-exports all public components and types.
  *
  * Import the CSS separately in your app entry (reset is optional):
- *   import '@zach-ofallTrades/juice/reset'
- *   import '@zach-ofallTrades/juice/tokens'
- *   import '@zach-ofallTrades/juice/styles'
+ *   import '@zach-ofalltrades/juice/reset'
+ *   import '@zach-ofalltrades/juice/tokens'
+ *   import '@zach-ofalltrades/juice/styles'
  */
 export * from './components/atoms';
 export * from './components/molecules';

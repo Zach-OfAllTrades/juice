@@ -2,7 +2,7 @@
  * Juice CSS Reset (opt-in)
  *
  * Import this in your consuming app ONCE if you don't have your own reset:
- *   import '@zach-ofallTrades/juice/reset'
+ *   import '@zach-ofalltrades/juice/reset'
  *
  * Scope: only normalizes elements used by Juice components.
  * Does not touch global typography or third-party elements.
