@@ -20,6 +20,10 @@
   --juice-color-brand-active: hsl(230 85% 44%);
   --juice-color-brand-subtle: hsl(230 85% 60% / 0.12);
   --juice-color-brand-contrast: hsl(0 0% 100%);
+  /* Fill for brand-emphasis surfaces (primary Button, brand Badge). Defaults
+     to the flat brand color; override with a gradient/image to theme brand
+     fills as more than a flat color without touching component CSS. */
+  --juice-color-brand-fill: var(--juice-color-brand);
 
   /* ── Color: Neutrals (Light Mode) ───────────────────────────── */
   --juice-color-bg: hsl(0 0% 100%);
@@ -27,6 +31,11 @@
   --juice-color-bg-muted: hsl(220 14% 91%);
   --juice-color-surface: hsl(0 0% 100%);
   --juice-color-surface-raised: hsl(0 0% 100%);
+  /* Fill for card-like surfaces. Defaults to the flat surface colors above;
+     override with a gradient/image to theme surfaces beyond a flat color
+     without touching component CSS. */
+  --juice-color-surface-fill: var(--juice-color-surface);
+  --juice-color-surface-raised-fill: var(--juice-color-surface-raised);
   --juice-color-overlay: hsl(0 0% 0% / 0.48);
 
   --juice-color-border: hsl(220 13% 86%);
@@ -105,6 +114,10 @@
   --juice-shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
   --juice-shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
   --juice-shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
+  /* Optional ambient glow for brand-emphasis hover states (primary Button,
+     interactive StatCard). Off by default; override with a colored
+     `box-shadow` value to add a glow to brand-filled/interactive surfaces. */
+  --juice-shadow-glow: none;
 
   /* ── Motion ─────────────────────────────────────────────────── */
   --juice-duration-fast: 100ms;

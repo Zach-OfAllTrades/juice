@@ -47,7 +47,7 @@
 }
 
 .juice-badge--brand {
-  background-color: var(--juice-color-brand);
+  background: var(--juice-color-brand-fill);
   color: var(--juice-color-brand-contrast);
   border-color: transparent;
 }

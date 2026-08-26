@@ -1,0 +1,31 @@
+.juice-empty-state {
+  text-align: center;
+  padding: var(--juice-space-16) var(--juice-space-8);
+  color: var(--juice-color-text-muted);
+  font-family: var(--juice-font-sans);
+}
+
+.juice-empty-state__icon {
+  font-size: 3rem;
+  margin-bottom: var(--juice-space-4);
+  opacity: 0.5;
+  line-height: 1;
+}
+
+.juice-empty-state__title {
+  font-size: var(--juice-text-lg);
+  font-weight: var(--juice-weight-semibold);
+  color: var(--juice-color-text-subtle);
+  margin-bottom: var(--juice-space-2);
+}
+
+.juice-empty-state__description {
+  font-size: var(--juice-text-sm);
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: var(--juice-leading-normal);
+}
+
+.juice-empty-state__action {
+  margin-top: var(--juice-space-6);
+}
