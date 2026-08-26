@@ -4,6 +4,12 @@
   flex-direction: column;
   gap: var(--juice-space-1);
   width: 100%;
+  /* Lets the whole field shrink below its selected value's natural text
+     width when it's a flex child (e.g. two Selects side by side) — flex
+     items default to min-width:auto, which would otherwise force the row
+     wider instead of letting .juice-select-trigger__value's ellipsis do
+     its job below. */
+  min-width: 0;
 }
 
 /* ── Select Trigger Button ──────────────────────────────────── */
@@ -13,6 +19,7 @@
   justify-content: space-between;
   gap: var(--juice-space-2);
   width: 100%;
+  min-width: 0;
 
   font-family: var(--juice-font-sans);
   font-size: var(--juice-text-base);
@@ -30,6 +37,17 @@
   transition: border-color var(--juice-duration-fast) var(--juice-easing-standard), box-shadow
     var(--juice-duration-fast) var(--juice-easing-standard), background-color
     var(--juice-duration-fast) var(--juice-easing-standard);
+}
+
+/* Selected value text — truncates with an ellipsis instead of growing the
+   trigger (and whatever row it's in) to fit a long option label. */
+.juice-select-trigger__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
 }
 
 .juice-select-trigger:hover:not(:disabled) {
@@ -86,6 +104,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   transition: transform var(--juice-duration-fast) var(--juice-easing-standard);
 }
 

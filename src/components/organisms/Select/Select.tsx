@@ -260,7 +260,9 @@ export function Select({
             [hasError && errorId, hasHelper && descriptionId].filter(Boolean).join(' ') || undefined
           }
         >
-          <SelectValue placeholder={placeholder} />
+          <span className="juice-select-trigger__value">
+            <SelectValue placeholder={placeholder} />
+          </span>
         </SelectTrigger>
 
         <SelectContent>
