@@ -1,6 +1,6 @@
 # Juice
 
-**A headless, framework-agnostic React component library.** Unstyled logic, accessible-by-default primitives, and a themeable design token layer — built on [Radix UI](https://www.radix-ui.com/).
+**A headless, framework-agnostic React component library.** Unstyled logic, accessible-by-default primitives, and a themeable design token layer, built on [Radix UI](https://www.radix-ui.com/).
 
 [![CI](https://github.com/Zach-OfAllTrades/juice/actions/workflows/ci.yml/badge.svg)](https://github.com/Zach-OfAllTrades/juice/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
