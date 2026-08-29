@@ -2,6 +2,7 @@ export * from './Modal';
 export * from './ConfirmDialog';
 export * from './Select';
 export * from './Card';
+export * from './Table';
 export * from './Drawer';
 export * from './Dropdown';
 export * from './Accordion';
