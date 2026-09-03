@@ -1,7 +1,7 @@
 .juice-card {
   display: flex;
   flex-direction: column;
-  background-color: var(--juice-color-surface);
+  background: var(--juice-color-surface-fill);
   color: var(--juice-color-text);
   border-radius: var(--juice-radius-xl);
   overflow: hidden;
@@ -18,7 +18,7 @@
 .juice-card--raised {
   border: 1px solid var(--juice-color-border);
   box-shadow: var(--juice-shadow-md);
-  background-color: var(--juice-color-surface-raised);
+  background: var(--juice-color-surface-raised-fill);
 }
 
 .juice-card--flat {

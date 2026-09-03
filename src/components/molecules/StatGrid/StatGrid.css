@@ -1,0 +1,75 @@
+.juice-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--juice-space-6);
+}
+
+.juice-stat-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--juice-color-surface-raised-fill);
+  border: 1px solid var(--juice-color-border);
+  border-radius: var(--juice-radius-xl);
+  padding: var(--juice-space-6);
+  font-family: var(--juice-font-sans);
+  transition: border-color var(--juice-duration-base) var(--juice-easing-standard), box-shadow
+    var(--juice-duration-base) var(--juice-easing-standard);
+}
+
+.juice-stat-card:hover {
+  border-color: var(--juice-color-border-strong);
+  box-shadow: var(--juice-shadow-glow);
+}
+
+/* Accent bar fades in on hover, filled from the same token as brand surfaces
+   so it picks up a gradient automatically when one is themed in. */
+.juice-stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--juice-color-brand-fill);
+  opacity: 0;
+  transition: opacity var(--juice-duration-base) var(--juice-easing-standard);
+}
+
+.juice-stat-card:hover::before {
+  opacity: 1;
+}
+
+.juice-stat-card__label {
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text-subtle);
+  font-weight: var(--juice-weight-medium);
+  margin-bottom: var(--juice-space-2);
+}
+
+.juice-stat-card__value {
+  font-size: var(--juice-text-2xl);
+  font-weight: var(--juice-weight-bold);
+  letter-spacing: -0.02em;
+  color: var(--juice-color-text);
+}
+
+.juice-stat-card__value--positive {
+  color: var(--juice-color-success);
+}
+
+.juice-stat-card__value--negative {
+  color: var(--juice-color-danger);
+}
+
+@media (max-width: 768px) {
+  .juice-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--juice-space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .juice-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}

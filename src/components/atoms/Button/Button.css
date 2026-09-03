@@ -89,12 +89,13 @@
 
 /* Primary */
 .juice-btn--primary {
-  background-color: var(--juice-color-brand);
+  background: var(--juice-color-brand-fill);
   color: var(--juice-color-brand-contrast);
   border-color: transparent;
 }
 .juice-btn--primary:hover:not(:disabled) {
   background-color: var(--juice-color-brand-hover);
+  box-shadow: var(--juice-shadow-glow);
 }
 .juice-btn--primary:active:not(:disabled) {
   background-color: var(--juice-color-brand-active);
