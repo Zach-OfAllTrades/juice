@@ -1,0 +1,75 @@
+.juice-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.juice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--juice-font-sans);
+}
+
+/* ── Header cells ────────────────────────────────────────────── */
+.juice-table-header-cell {
+  text-align: left;
+  font-size: var(--juice-text-xs);
+  font-weight: var(--juice-weight-semibold);
+  color: var(--juice-color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--juice-space-3) var(--juice-space-4);
+  border-bottom: 1px solid var(--juice-color-border);
+  white-space: nowrap;
+}
+
+.juice-table-header-cell--right {
+  text-align: right;
+}
+
+.juice-table-header-cell--center {
+  text-align: center;
+}
+
+/* ── Body cells ──────────────────────────────────────────────── */
+.juice-table-cell {
+  padding: var(--juice-space-4);
+  border-bottom: 1px solid var(--juice-color-border);
+  font-size: var(--juice-text-sm);
+  color: var(--juice-color-text-subtle);
+}
+
+.juice-table-cell--right {
+  text-align: right;
+}
+
+.juice-table-cell--center {
+  text-align: center;
+}
+
+.juice-table-cell--numeric {
+  font-family: var(--juice-font-mono);
+  font-weight: var(--juice-weight-medium);
+  text-align: right;
+}
+
+.juice-table-cell--positive {
+  color: var(--juice-color-success);
+}
+
+.juice-table-cell--negative {
+  color: var(--juice-color-danger);
+}
+
+/* ── Row hover ───────────────────────────────────────────────── */
+.juice-table-row:hover > .juice-table-cell {
+  background-color: var(--juice-color-bg-subtle);
+  color: var(--juice-color-text);
+}
+
+/* ── Empty state ─────────────────────────────────────────────── */
+.juice-table-empty-cell {
+  padding: var(--juice-space-8);
+  text-align: center;
+  color: var(--juice-color-text-subtle);
+  font-size: var(--juice-text-sm);
+}
